@@ -1,0 +1,1020 @@
+fileFormatVersion: 2
+guid: 488b219288a463e498f95f67aa7979d9
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_0
+      rect:
+        serializedVersion: 2
+        x: 3107
+        y: 2248
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecb6489e56f8db7439e12ebc5a9ef91c
+      internalID: -1797993423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_1
+      rect:
+        serializedVersion: 2
+        x: 1487
+        y: 2078
+        width: 325
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cae96abcc9d49854a8106769384f1795
+      internalID: -4668255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_2
+      rect:
+        serializedVersion: 2
+        x: 1817
+        y: 2078
+        width: 326
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 877acdcac0a8c78449725627cb9a60ea
+      internalID: -1638696468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_3
+      rect:
+        serializedVersion: 2
+        x: 2288
+        y: 2058
+        width: 163
+        height: 163
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c2107112cc70de4da52324378b0c92e
+      internalID: -76090007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_4
+      rect:
+        serializedVersion: 2
+        x: 2458
+        y: 2058
+        width: 163
+        height: 163
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b1693c2b4aad6040aa1c7507800e9e9
+      internalID: 1427833639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_5
+      rect:
+        serializedVersion: 2
+        x: 2629
+        y: 2058
+        width: 162
+        height: 163
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b381e39511200045b1680261f55dc34
+      internalID: -1829390936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_6
+      rect:
+        serializedVersion: 2
+        x: 2799
+        y: 2058
+        width: 162
+        height: 163
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1098ea2a9627d484aaefc7671c2cb417
+      internalID: 1099402727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_7
+      rect:
+        serializedVersion: 2
+        x: 2969
+        y: 2058
+        width: 163
+        height: 163
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 496854d5001b37443bc978cb85ba1934
+      internalID: 532584323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_8
+      rect:
+        serializedVersion: 2
+        x: 3139
+        y: 2058
+        width: 163
+        height: 163
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 691b176ff6f32954e994109e501d7576
+      internalID: -386859710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_9
+      rect:
+        serializedVersion: 2
+        x: 3728
+        y: 2068
+        width: 644
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adb002f5793a65b47bc154c65c256dbd
+      internalID: 421196731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_10
+      rect:
+        serializedVersion: 2
+        x: 4377
+        y: 2068
+        width: 646
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f28c2b81fe1199e4ca653bfca6d5a0cd
+      internalID: -1815248358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_11
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 1748
+        width: 325
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ad0336e9c5d0264abe1197a52bdddd7
+      internalID: 1221228219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_12
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 1908
+        width: 166
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a41cacfbb43ea84f9fc4467ac78fd33
+      internalID: -375759133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_13
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 1748
+        width: 165
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f538f18bce9dcf74fb2e6ea67b79b5f6
+      internalID: 1373230507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_14
+      rect:
+        serializedVersion: 2
+        x: 698
+        y: 1748
+        width: 165
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ee03d63c683f484d9753dbc87559636
+      internalID: -1253482016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_15
+      rect:
+        serializedVersion: 2
+        x: 868
+        y: 1748
+        width: 165
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4d1e0fac5c7a3747a644a897cebb50e
+      internalID: 1330105945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_16
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 1748
+        width: 163
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6589756dbfe5ef044a1d9a53f4399f4e
+      internalID: -1330854578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_17
+      rect:
+        serializedVersion: 2
+        x: 1208
+        y: 1748
+        width: 163
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80cfec23ac6ddee4e9df80bc9c61aa50
+      internalID: -2053124963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_18
+      rect:
+        serializedVersion: 2
+        x: 1487
+        y: 1908
+        width: 325
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 677e1c4a55907ee45a83c64b51f13654
+      internalID: 895484951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_19
+      rect:
+        serializedVersion: 2
+        x: 1817
+        y: 1908
+        width: 326
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20938633da918774187f97c70001867c
+      internalID: 742704578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_20
+      rect:
+        serializedVersion: 2
+        x: 3728
+        y: 1898
+        width: 644
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eae43b65875e1e3459478b2cc4368b07
+      internalID: 296880555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_21
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 1578
+        width: 646
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46b1ba5103b77004284d6bf3c25d935d
+      internalID: 1315930226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_22
+      rect:
+        serializedVersion: 2
+        x: 698
+        y: 1578
+        width: 165
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82f756a578f98854dbe7a5acb20ffe34
+      internalID: 155933773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_23
+      rect:
+        serializedVersion: 2
+        x: 868
+        y: 1578
+        width: 165
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64400c78f5450ad498687a96edbad4b3
+      internalID: -1783394214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_24
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 1578
+        width: 163
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8ff06a2120a6374999f8e5e0a2f3aa2
+      internalID: -1090578009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_25
+      rect:
+        serializedVersion: 2
+        x: 1208
+        y: 1578
+        width: 163
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a83ac4f6332592e449c2a96f31398453
+      internalID: -1102114874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_26
+      rect:
+        serializedVersion: 2
+        x: 1968
+        y: 1578
+        width: 643
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8cd978d339725f46b29f920431fdb54
+      internalID: -931782427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_27
+      rect:
+        serializedVersion: 2
+        x: 2769
+        y: 1597
+        width: 644
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1dddc8497cd1800408179f48abc10d94
+      internalID: 1887000016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_28
+      rect:
+        serializedVersion: 2
+        x: 3728
+        y: 1728
+        width: 644
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abb8192e05ea2ef46bfbb83cb4856b49
+      internalID: 1103634647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_29
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 1267
+        width: 375
+        height: 306
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcf639ecbb44a4b47b22418b2c52e40c
+      internalID: 1242305979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_30
+      rect:
+        serializedVersion: 2
+        x: 1968
+        y: 1407
+        width: 643
+        height: 166
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5d5988c798dead4ca0505856b29bf40
+      internalID: -741407669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_31
+      rect:
+        serializedVersion: 2
+        x: 2769
+        y: 1427
+        width: 644
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8d7d6a75f0e35a4da3febc9af014840
+      internalID: -1545139095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_32
+      rect:
+        serializedVersion: 2
+        x: 3728
+        y: 1558
+        width: 644
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fea8ed6ba8bb7ec479b0691549b039e1
+      internalID: 2038510478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_33
+      rect:
+        serializedVersion: 2
+        x: 1968
+        y: 1237
+        width: 643
+        height: 166
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac6e51dae1c713b469ab7d19822ae2cb
+      internalID: -635574566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_34
+      rect:
+        serializedVersion: 2
+        x: 2769
+        y: 1257
+        width: 644
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0556c51665dfb5645a2c8e67486c3e7a
+      internalID: -1765982677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_35
+      rect:
+        serializedVersion: 2
+        x: 3728
+        y: 1378
+        width: 644
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 905a1c0940b71ed46af152be9879d937
+      internalID: 2137848150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_36
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 769
+        width: 486
+        height: 483
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a2bdc2ee6cc90a49a8a63f1ceaeb365
+      internalID: 1364387941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_37
+      rect:
+        serializedVersion: 2
+        x: 3728
+        y: 1198
+        width: 644
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64c0121f69f4598439cb0cef8e171647
+      internalID: 102474951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_38
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 279
+        width: 486
+        height: 483
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d6a83bde41da4d47bb02e3de775d41b
+      internalID: -1989650284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI TowerDeffense_little_39
+      rect:
+        serializedVersion: 2
+        x: 1329
+        y: 458
+        width: 1282
+        height: 644
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 60, y: 60, z: 60, w: 60}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0773ce8c39e27e8409523f487ccf2b2c
+      internalID: 507557548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 047af62c16ba1cf4aba6e31560781c99
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      UI TowerDeffense_little_0: -1797993423
+      UI TowerDeffense_little_1: -4668255
+      UI TowerDeffense_little_10: -1815248358
+      UI TowerDeffense_little_11: 1221228219
+      UI TowerDeffense_little_12: -375759133
+      UI TowerDeffense_little_13: 1373230507
+      UI TowerDeffense_little_14: -1253482016
+      UI TowerDeffense_little_15: 1330105945
+      UI TowerDeffense_little_16: -1330854578
+      UI TowerDeffense_little_17: -2053124963
+      UI TowerDeffense_little_18: 895484951
+      UI TowerDeffense_little_19: 742704578
+      UI TowerDeffense_little_2: -1638696468
+      UI TowerDeffense_little_20: 296880555
+      UI TowerDeffense_little_21: 1315930226
+      UI TowerDeffense_little_22: 155933773
+      UI TowerDeffense_little_23: -1783394214
+      UI TowerDeffense_little_24: -1090578009
+      UI TowerDeffense_little_25: -1102114874
+      UI TowerDeffense_little_26: -931782427
+      UI TowerDeffense_little_27: 1887000016
+      UI TowerDeffense_little_28: 1103634647
+      UI TowerDeffense_little_29: 1242305979
+      UI TowerDeffense_little_3: -76090007
+      UI TowerDeffense_little_30: -741407669
+      UI TowerDeffense_little_31: -1545139095
+      UI TowerDeffense_little_32: 2038510478
+      UI TowerDeffense_little_33: -635574566
+      UI TowerDeffense_little_34: -1765982677
+      UI TowerDeffense_little_35: 2137848150
+      UI TowerDeffense_little_36: 1364387941
+      UI TowerDeffense_little_37: 102474951
+      UI TowerDeffense_little_38: -1989650284
+      UI TowerDeffense_little_39: 507557548
+      UI TowerDeffense_little_4: 1427833639
+      UI TowerDeffense_little_5: -1829390936
+      UI TowerDeffense_little_6: 1099402727
+      UI TowerDeffense_little_7: 532584323
+      UI TowerDeffense_little_8: -386859710
+      UI TowerDeffense_little_9: 421196731
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
