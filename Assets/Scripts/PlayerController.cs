@@ -1,8 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
-    
+
 
     [Header("Tools")]
     [SerializeField] private GameObject _airDeffense;
@@ -12,58 +14,77 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private List<GameObject> _towers;
     [SerializeField] private List<GameObject> _airDefenses;
+
     [Header("Swipe Detects")]
-    //[SerializeField] private float minimumDistance = .2f;
-    //[SerializeField] private float maximumTime = 1.0f;
-    private Vector2 _startPosition;
-    private float _startTime;
-    private Vector2 _endPosition;
-    private float _endTime;
-    private InputManager _inputManager;
+    [SerializeField] private Transform _stabilizator;
+    [SerializeField] private float _cameraSpeed;
+    private TouchControlls _controls;
     private Camera _camera;
-    private GameObject choosedObject;
+    private Transform _cameraTransform;
+    private GameObject _choosedObject;
+    private Coroutine _swipeCoroutine;
+
     [Header("Information")]
     private int indexX, indexY;
     private void Awake()
     {
-        //_inputManager = InputManager.Instance;
+        _controls = new TouchControlls();
         _camera = Camera.main;
+        _cameraTransform = _camera.transform;
     }
-    /*
     private void OnEnable()
     {
-        _inputManager.onStartTouch += SwipeStart;
-        _inputManager.onEndTouch += SwipeEnd;
+        _controls.Enable();
     }
     private void OnDisable()
     {
-        _inputManager.onStartTouch -= SwipeStart;
-        _inputManager.onEndTouch -= SwipeEnd;
+        _controls.Disable();
     }
-    private void SwipeStart(Vector2 Position, float time)
+    private void Start()
     {
-        _startPosition = Position;
-        _startTime = time;
+        _controls.Touch.TouchPress.started += _ => SwipeStart();
+        _controls.Touch.TouchPress.canceled += _ => SwipeEnd();
     }
-    private void SwipeEnd(Vector2 Position, float time)
-    {
-        _endPosition = Position;
-        _endTime = time;
-        DetectSwipe();
-    }
-    private void DetectSwipe()
-    {
-        if (Vector2.Distance(_startPosition, _endPosition) >= minimumDistance && (_endTime - _startTime) <= maximumTime)
-        {
-            Debug.DrawLine(_startPosition, _endPosition, Color.red, 5.0f);
-        }
-    } */
-    void Update()
+   
+    private void Update()
     {
         ObjectSelection();
         ObjectSetPosition();
         
         
+    }
+    private void SwipeStart()
+    {
+        _swipeCoroutine = StartCoroutine(SwipeDetection());
+    }
+    private void SwipeEnd()
+    {
+        StopCoroutine(_swipeCoroutine);
+    }
+    IEnumerator SwipeDetection()
+    {
+        float previousDistance = 0.0f, currentDistance = 0.0f;
+        Debug.Log("Hello");
+        while (true) 
+        {
+            currentDistance = Vector2.Distance(_stabilizator.position, _controls.Touch.PrimaryFingerPositon.ReadValue<Vector2>());
+            //SwipeRight
+            if (currentDistance > previousDistance && _cameraTransform.position.x > -4.6f)
+            {
+                Vector3 targetPosition = _cameraTransform.position;
+                targetPosition.x -= 1;
+                _cameraTransform.position = Vector3.Slerp(_cameraTransform.position, new Vector3(targetPosition.x, 17.5f, -12.0f), Time.deltaTime * _cameraSpeed);
+            }
+            //SwipeLeft
+            if (currentDistance < previousDistance && _cameraTransform.position.x < 4.6f)
+            {
+                Vector3 targetPosition = _cameraTransform.position;
+                targetPosition.x += 1;
+                _cameraTransform.position = Vector3.Slerp(_cameraTransform.position, new Vector3(targetPosition.x, 17.5f, -12.0f), Time.deltaTime * _cameraSpeed);
+            }
+            previousDistance = currentDistance;
+            yield return null;
+        }
     }
     private void ObjectSelection()
     {
@@ -100,8 +121,8 @@ public class PlayerController : MonoBehaviour
         Vector3 towerOffset = new Vector3(0,0,0);
         switch (_gameManager.SelectedObject)
         {
-            case "0": choosedObject = _tower; break;
-            case "1": choosedObject = _airDeffense; break;
+            case "0": _choosedObject = _tower; break;
+            case "1": _choosedObject = _airDeffense; break;
         }
         
         if (isNotNull)
@@ -119,7 +140,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    GameObject newBuild = Instantiate(choosedObject, towerOffset, Quaternion.identity);
+                    GameObject newBuild = Instantiate(_choosedObject, towerOffset, Quaternion.identity);
                     switch (_gameManager.SelectedObject)
                     {
                         case "0": 
