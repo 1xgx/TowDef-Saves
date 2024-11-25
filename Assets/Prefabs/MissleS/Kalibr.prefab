@@ -87,7 +87,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.16
+  m_Radius: 0.25
   m_Height: 0.74
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0.15}
@@ -124,7 +124,7 @@ MonoBehaviour:
   _target: {fileID: 0}
   _damage: 50
   _gridCell: {fileID: 0}
-  steps: 1
+  _steps: 1
   _canMove: 0
 --- !u!54 &-6539697898349026799
 Rigidbody:

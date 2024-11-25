@@ -42,12 +42,13 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
-        _controls.Touch.TouchPress.started += _ => SwipeStart();
-        _controls.Touch.TouchPress.canceled += _ => SwipeEnd();
+       
     }
    
     private void Update()
     {
+        _controls.Touch.TouchPress.started += _ => SwipeStart();
+        _controls.Touch.TouchPress.canceled += _ => SwipeEnd();
         ObjectSelection();
         ObjectSetPosition();
         

@@ -106,14 +106,14 @@ public class MissleCellController : MonoBehaviour
     }//метод который получает местоположение башни
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Tower")
         {
             _target.GetComponent<Tower>().TakeDamage(_damage);
             Destroy(gameObject);
         }
         if (other.tag == "Zone" || other.tag == "WaterZone")
         {
-            if (other.GetComponent<SixAngelSelection>().IndexX == _cell[_missleWay[_steps].Item1, _missleWay[_steps].Item2].GetComponent<SixAngelSelection>().IndexX &&
+            if (other.GetComponent<SixAngelSelection>() && other.GetComponent<SixAngelSelection>() != null && other.GetComponent<SixAngelSelection>().IndexX == _cell[_missleWay[_steps].Item1, _missleWay[_steps].Item2].GetComponent<SixAngelSelection>().IndexX &&
                 other.GetComponent<SixAngelSelection>().IndexY == _cell[_missleWay[_steps].Item1, _missleWay[_steps].Item2].GetComponent<SixAngelSelection>().IndexY)
             {
                 Debug.Log("Ok_1");

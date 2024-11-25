@@ -49,7 +49,7 @@ public class MissleController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Tower")
         {
             _target.GetComponent<Tower>().TakeDamage(_damage);
             Destroy(gameObject);
