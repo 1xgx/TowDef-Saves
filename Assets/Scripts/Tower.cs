@@ -29,7 +29,6 @@ public class Tower : MonoBehaviour
     private void Die() 
     {
         SceneManager.LoadSceneAsync(0);
-        Destroy(gameObject);
 
     }
 }

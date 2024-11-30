@@ -15,10 +15,10 @@ public class Missle : MonoBehaviour
         if(missleType == "line") _missleLineContoroller = GetComponent<MissleController>();
 
     }
-    private void Update()
+    private void LateUpdate()
     {
 
-        _target = GameObject.FindWithTag("Tower").GetComponent<Transform>();
+        if(_target == null)_target = GameObject.FindWithTag("Tower").GetComponent<Transform>();
         switch (missleType)
         {
             case "cell": Debug.Log($"{_target.GetComponent<Tower>().indexX}"); 
