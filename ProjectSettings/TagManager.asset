@@ -9,6 +9,7 @@ TagManager:
   - WaterZone
   - DeadZone
   - Tower
+  - AirDefense
   layers:
   - Default
   - TransparentFX

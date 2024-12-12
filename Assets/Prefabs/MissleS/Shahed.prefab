@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -3508999166588368018}
   m_Layer: 0
   m_Name: Shahed
-  m_TagString: Untagged
+  m_TagString: Missle
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,7 +93,7 @@ MonoBehaviour:
   _target: {fileID: 0}
   _damage: 25
   _gridCell: {fileID: 0}
-  steps: 1
+  _steps: 1
   _canMove: 0
 --- !u!54 &-3508999166588368018
 Rigidbody:

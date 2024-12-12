@@ -9,11 +9,13 @@ public class PlayerController : MonoBehaviour
     [Header("Tools")]
     [SerializeField] private GameObject _airDeffense;
     [SerializeField] private GameObject _tower;
+    [SerializeField] private GameObject _radar;
     public GameObject _selectedObject;
     [SerializeField] private string[] _nameZone;
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private List<GameObject> _towers;
     [SerializeField] private List<GameObject> _airDefenses;
+    [SerializeField] private List<GameObject> _radars;
 
     [Header("Swipe Detects")]
     [SerializeField] private Transform _stabilizator;
@@ -118,12 +120,15 @@ public class PlayerController : MonoBehaviour
         bool isNotNull = isPressed && _selectedObject != null && _selectedObject.tag == _nameZone[0];
         bool TowerCanBuilt = _towers.Count > 1 && _gameManager.SelectedObject == "0";
         bool AirDeffenseCanBuilt = _airDefenses.Count > 3 && _gameManager.SelectedObject == "1";
+        bool RadarCanBuilt = _radars.Count > 3 && _gameManager.SelectedObject == "2";
+
         bool isAssigned = _gameManager.SelectedObject != null;
         Vector3 towerOffset = new Vector3(0,0,0);
         switch (_gameManager.SelectedObject)
         {
             case "0": _choosedObject = _tower; break;
             case "1": _choosedObject = _airDeffense; break;
+            case "2":_choosedObject = _radar; break;
         }
         
         if (isNotNull)
@@ -148,7 +153,17 @@ public class PlayerController : MonoBehaviour
                             if (_towers.Count <= 0) _towers.Add(newBuild);
                             _towers[0].GetComponent<Tower>().indexX = _selectedObject.GetComponent<SixAngelSelection>().IndexX;
                             _towers[0].GetComponent<Tower>().indexY = _selectedObject.GetComponent<SixAngelSelection>().IndexY; break;
-                        case "1": _airDefenses.Add(newBuild); break;
+                        case "1": _airDefenses.Add(newBuild); 
+                            if(_radars.Count > 0)
+                            {
+                                for (int i = 0; i < _radars.Count; i++)
+                                {
+                                    Debug.Log(newBuild.name + "");
+                                    _radars[i].GetComponent<RadarDetection>()._airDefenses.Add(newBuild.GetComponent<AirDefenseController>());
+                                }
+                            }
+                             break;
+                        case "2":_radars.Add(newBuild); break;
                     }
                 }
                 
@@ -165,6 +180,11 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(_airDefenses[0]);
             _airDefenses.RemoveAt(0);
+        }
+        if (RadarCanBuilt)
+        {
+            Destroy(_radars[0]);
+            _radars.RemoveAt(0);
         }
 
     }

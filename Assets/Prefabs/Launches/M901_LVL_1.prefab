@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 7740830741191487144}
   - component: {fileID: 3006078344796435337}
   - component: {fileID: 8674847181955916573}
+  - component: {fileID: 3661035885748513005}
   m_Layer: 0
   m_Name: M901_LVL_1
   m_TagString: Untagged
@@ -130,6 +131,20 @@ MonoBehaviour:
   indexX: 0
   indexY: 0
   healthBar: {fileID: 0}
+--- !u!114 &3661035885748513005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6534297857220710281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 816523e488a91304fb934d62ac8f1135, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 0}
+  _selectedTarget: {fileID: 0}
 --- !u!1001 &4235922631625709861
 PrefabInstance:
   m_ObjectHideFlags: 0
