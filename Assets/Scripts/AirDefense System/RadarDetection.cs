@@ -35,7 +35,7 @@ public class RadarDetection : MonoBehaviour
     }
     private void FindNearestAirDefense()
     {
-        float minX = 0, minY = 0, minZ = 0;
+        //float minX = 0, minY = 0, minZ = 0;
 
         float minDistance = float.MaxValue;
 

@@ -25,8 +25,8 @@ public class MissleSpawner : MonoBehaviour
             Vector3 newPosition = _gridCell._hexagonGrid[0, randomIndexY].transform.position;
             //_misslePrefab[randomIndex].GetComponent<MissleCellController>().Spawn();
             GameObject newMissle = Instantiate(_misslePrefab[randomIndex], new Vector3(newPosition.x, .3f, newPosition.z), Quaternion.identity);
-            newMissle.GetComponent<MissleCellController>()._MissleCellPosition.Item1 = 0;
-            newMissle.GetComponent<MissleCellController>()._MissleCellPosition.Item2 = randomIndexY;
+            newMissle.GetComponent<MissleCellController>().MissleCellPosition.Item1 = 0;
+            newMissle.GetComponent<MissleCellController>().MissleCellPosition.Item2 = randomIndexY;
             newMissle.GetComponent<MissleCellController>().Spawn();
 
         }

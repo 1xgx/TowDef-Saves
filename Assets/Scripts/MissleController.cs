@@ -5,7 +5,6 @@ using UnityEngine;
 public class MissleController : MonoBehaviour
 {
     private Transform _target;
-    
     [Header ("Standart option")]
     [SerializeField] private float _health, _maxHealth = 3.0f;
     [SerializeField] private float _speed = 1.0f;

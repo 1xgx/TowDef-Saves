@@ -1,22 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 public class PlayerController : MonoBehaviour
 {
 
 
-    [Header("Tools")]
+
+    [Header("Build")]
     [SerializeField] private GameObject _airDeffense;
     [SerializeField] private GameObject _tower;
     [SerializeField] private GameObject _radar;
+    [SerializeField] private GameObject _gepard;//Test
     public GameObject _selectedObject;
+    
+    [Header("Tools")]
     [SerializeField] private string[] _nameZone;
     [SerializeField] private GameManager _gameManager;
+
+    [Header ("List of Builds")]
     [SerializeField] private List<GameObject> _towers;
     [SerializeField] private List<GameObject> _airDefenses;
     [SerializeField] private List<GameObject> _radars;
-
+    [SerializeField] private List<GameObject> _gepards;//Test list
     [Header("Swipe Detects")]
     [SerializeField] private Transform _stabilizator;
     [SerializeField] private float _cameraSpeed;
@@ -96,6 +104,18 @@ public class PlayerController : MonoBehaviour
             Touch touch = Input.GetTouch(0);
             if (touch.phase == UnityEngine.TouchPhase.Began)
             {
+               
+                PointerEventData pointerData = new PointerEventData(EventSystem.current)
+                {
+                    position = touch.position
+                };
+                List<RaycastResult> results = new List<RaycastResult>();
+                EventSystem.current.RaycastAll(pointerData, results);
+
+                if(results.Count > 0)
+                {
+                    return;
+                }
                 Ray ray = _camera.ScreenPointToRay(touch.position);
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit) && hit.collider != null)
@@ -103,9 +123,18 @@ public class PlayerController : MonoBehaviour
                     Debug.Log("Нажали на объект: " + hit.collider.gameObject.name);
                     if (_selectedObject) _selectedObject = null;
                     _selectedObject = hit.collider.gameObject;
-                    _selectedObject.gameObject.GetComponent<SixAngelSelection>().ActiveObject.SetActive(false);
-                    _selectedObject.gameObject.GetComponent<SixAngelSelection>().UnactiveObject.SetActive(true);
-                    _selectedObject.gameObject.GetComponent<SixAngelSelection>().tmpSelectedObject = gameObject;
+                    if (_selectedObject.tag == "Plane") return;
+                    if (_selectedObject != null && _selectedObject.tag == "DeadZone" || _selectedObject.tag == "Zone" || _selectedObject.tag == "WaterZone")
+                    {
+                        _selectedObject.gameObject.GetComponent<SixAngelSelection>().ActiveObject.SetActive(false);
+                        _selectedObject.gameObject.GetComponent<SixAngelSelection>().UnactiveObject.SetActive(true);
+                        _selectedObject.gameObject.GetComponent<SixAngelSelection>().tmpSelectedObject = gameObject;
+
+                    }
+                    else
+                    {
+                        return;
+                    }
                     
 
                 }
@@ -121,6 +150,8 @@ public class PlayerController : MonoBehaviour
         bool TowerCanBuilt = _towers.Count > 1 && _gameManager.SelectedObject == "0";
         bool AirDeffenseCanBuilt = _airDefenses.Count > 3 && _gameManager.SelectedObject == "1";
         bool RadarCanBuilt = _radars.Count > 3 && _gameManager.SelectedObject == "2";
+        bool GepardCanBuilt = _gepards.Count > 1 && _gameManager.SelectedObject == "TestGepard";
+
 
         bool isAssigned = _gameManager.SelectedObject != null;
         Vector3 towerOffset = new Vector3(0,0,0);
@@ -129,14 +160,17 @@ public class PlayerController : MonoBehaviour
             case "0": _choosedObject = _tower; break;
             case "1": _choosedObject = _airDeffense; break;
             case "2":_choosedObject = _radar; break;
+            case "TestGepard": _choosedObject = _gepard; break;
         }
         
+
         if (isNotNull)
         {
             towerOffset = new Vector3(_selectedObject.transform.position.x, 0.3f, _selectedObject.transform.position.z);
             Touch touch = Input.GetTouch(0);
             if (touch.phase == UnityEngine.TouchPhase.Began)
             {
+                
                 if (_towers.Count > 0 && _gameManager.SelectedObject == "0")
                 {
                     if (_gameManager.FightIsStarted) return;
@@ -147,13 +181,19 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     GameObject newBuild = Instantiate(_choosedObject, towerOffset, Quaternion.identity);
+                    
                     switch (_gameManager.SelectedObject)
                     {
-                        case "0": 
+                        case "0":
+                            if(CheckSelectedObject(_towers, _selectedObject)) return;
                             if (_towers.Count <= 0) _towers.Add(newBuild);
                             _towers[0].GetComponent<Tower>().indexX = _selectedObject.GetComponent<SixAngelSelection>().IndexX;
-                            _towers[0].GetComponent<Tower>().indexY = _selectedObject.GetComponent<SixAngelSelection>().IndexY; break;
-                        case "1": _airDefenses.Add(newBuild); 
+                            _towers[0].GetComponent<Tower>().indexY = _selectedObject.GetComponent<SixAngelSelection>().IndexY;
+                            
+                            break;
+                        case "1":
+                            if (CheckSelectedObject(_airDefenses, _selectedObject)) return;
+                            _airDefenses.Add(newBuild); 
                             if(_radars.Count > 0)
                             {
                                 for (int i = 0; i < _radars.Count; i++)
@@ -162,8 +202,19 @@ public class PlayerController : MonoBehaviour
                                     _radars[i].GetComponent<RadarDetection>()._airDefenses.Add(newBuild.GetComponent<AirDefenseController>());
                                 }
                             }
+                            
                              break;
-                        case "2":_radars.Add(newBuild); break;
+                        case "2":
+                            if (CheckSelectedObject(_radars, _selectedObject)) return;
+                            _radars.Add(newBuild);
+                            break;
+                        case "TestGepard": //Test list
+                            
+                            newBuild.GetComponent<VehicleCellMovement>().indexX = _selectedObject.GetComponent<SixAngelSelection>().IndexX;
+                            newBuild.GetComponent<VehicleCellMovement>().indexY = _selectedObject.GetComponent<SixAngelSelection>().IndexY;
+                            _gepards.Add(newBuild);
+                            
+                            break;
                     }
                 }
                 
@@ -186,7 +237,24 @@ public class PlayerController : MonoBehaviour
             Destroy(_radars[0]);
             _radars.RemoveAt(0);
         }
+        if (GepardCanBuilt)
+        {
+            Destroy(_gepards[0]);
+            _gepards.RemoveAt(0);
+        }
 
+    }
+    private bool CheckSelectedObject(List<GameObject> Objects, GameObject SelectedObject)
+    {
+        foreach(var OneObject in Objects)
+        {
+            if(SelectedObject == OneObject)
+            {
+                Debug.Log($"{SelectedObject} - same object");
+                return true;
+            }
+        }
+        return false;
     }
 
 }
