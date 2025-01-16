@@ -151,6 +151,7 @@ public class PlayerController : MonoBehaviour
         bool AirDeffenseCanBuilt = _airDefenses.Count > 3 && _gameManager.SelectedObject == "1";
         bool RadarCanBuilt = _radars.Count > 3 && _gameManager.SelectedObject == "2";
         bool GepardCanBuilt = _gepards.Count > 1 && _gameManager.SelectedObject == "TestGepard";
+        
 
 
         bool isAssigned = _gameManager.SelectedObject != null;
@@ -166,58 +167,69 @@ public class PlayerController : MonoBehaviour
 
         if (isNotNull)
         {
+            GameObject ReferenceFromSelectedObject = _selectedObject.GetComponent<SixAngelSelection>().ReferenceOfObject;
             towerOffset = new Vector3(_selectedObject.transform.position.x, 0.3f, _selectedObject.transform.position.z);
             Touch touch = Input.GetTouch(0);
             if (touch.phase == UnityEngine.TouchPhase.Began)
             {
-                
-                if (_towers.Count > 0 && _gameManager.SelectedObject == "0")
+                if (ReferenceFromSelectedObject != null)
                 {
-                    if (_gameManager.FightIsStarted) return;
-                    _towers[0].gameObject.transform.position = towerOffset;
-                    _towers[0].GetComponent<Tower>().indexX = _selectedObject.GetComponent<SixAngelSelection>().IndexX;
-                    _towers[0].GetComponent<Tower>().indexY = _selectedObject.GetComponent<SixAngelSelection>().IndexY;
+                    //if (ReferenceFromSelectedObject.GetComponent<VehicleCellMovement>().SelectedVehicle)
+                    //{
+                    //    ReferenceFromSelectedObject.GetComponent<VehicleCellMovement>().SelectedVehicle = true;
+                    //} Has problem
+                    Debug.Log($"The {_selectedObject} is busy");
+                    return;
                 }
                 else
                 {
-                    GameObject newBuild = Instantiate(_choosedObject, towerOffset, Quaternion.identity);
-                    
-                    switch (_gameManager.SelectedObject)
+                    if (_towers.Count > 0 && _gameManager.SelectedObject == "0")
                     {
-                        case "0":
-                            if(CheckSelectedObject(_towers, _selectedObject)) return;
-                            if (_towers.Count <= 0) _towers.Add(newBuild);
-                            _towers[0].GetComponent<Tower>().indexX = _selectedObject.GetComponent<SixAngelSelection>().IndexX;
-                            _towers[0].GetComponent<Tower>().indexY = _selectedObject.GetComponent<SixAngelSelection>().IndexY;
-                            
-                            break;
-                        case "1":
-                            if (CheckSelectedObject(_airDefenses, _selectedObject)) return;
-                            _airDefenses.Add(newBuild); 
-                            if(_radars.Count > 0)
-                            {
-                                for (int i = 0; i < _radars.Count; i++)
+                        if (_gameManager.FightIsStarted) return;
+                        _towers[0].gameObject.transform.position = towerOffset;
+                        _towers[0].GetComponent<Tower>().indexX = _selectedObject.GetComponent<SixAngelSelection>().IndexX;
+                        _towers[0].GetComponent<Tower>().indexY = _selectedObject.GetComponent<SixAngelSelection>().IndexY;
+                    }
+                    else
+                    {
+                        GameObject newBuild = Instantiate(_choosedObject, towerOffset, Quaternion.identity);
+                        _selectedObject.GetComponent<SixAngelSelection>().ReferenceOfObject = newBuild;
+                        switch (_gameManager.SelectedObject)
+                        {
+                            case "0":
+                                if (CheckSelectedObject(_towers, _selectedObject)) return;
+                                if (_towers.Count <= 0) _towers.Add(newBuild);
+                                _towers[0].GetComponent<Tower>().indexX = _selectedObject.GetComponent<SixAngelSelection>().IndexX;
+                                _towers[0].GetComponent<Tower>().indexY = _selectedObject.GetComponent<SixAngelSelection>().IndexY;
+
+                                break;
+                            case "1":
+                                if (CheckSelectedObject(_airDefenses, _selectedObject)) return;
+                                _airDefenses.Add(newBuild);
+                                if (_radars.Count > 0)
                                 {
-                                    Debug.Log(newBuild.name + "");
-                                    _radars[i].GetComponent<RadarDetection>()._airDefenses.Add(newBuild.GetComponent<AirDefenseController>());
+                                    for (int i = 0; i < _radars.Count; i++)
+                                    {
+                                        Debug.Log(newBuild.name + "");
+                                        _radars[i].GetComponent<RadarDetection>()._airDefenses.Add(newBuild.GetComponent<AirDefenseController>());
+                                    }
                                 }
-                            }
-                            
-                             break;
-                        case "2":
-                            if (CheckSelectedObject(_radars, _selectedObject)) return;
-                            _radars.Add(newBuild);
-                            break;
-                        case "TestGepard": //Test list
-                            
-                            newBuild.GetComponent<VehicleCellMovement>().indexX = _selectedObject.GetComponent<SixAngelSelection>().IndexX;
-                            newBuild.GetComponent<VehicleCellMovement>().indexY = _selectedObject.GetComponent<SixAngelSelection>().IndexY;
-                            _gepards.Add(newBuild);
-                            
-                            break;
+
+                                break;
+                            case "2":
+                                if (CheckSelectedObject(_radars, _selectedObject)) return;
+                                _radars.Add(newBuild);
+                                break;
+                            case "TestGepard": //Test list
+                                
+                                newBuild.GetComponent<VehicleCellMovement>().indexX = _selectedObject.GetComponent<SixAngelSelection>().IndexX;
+                                newBuild.GetComponent<VehicleCellMovement>().indexY = _selectedObject.GetComponent<SixAngelSelection>().IndexY;
+                                _gepards.Add(newBuild);
+
+                                break;
+                        }
                     }
                 }
-                
             }
 
         }

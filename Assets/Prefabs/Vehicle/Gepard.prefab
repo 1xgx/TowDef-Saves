@@ -75,8 +75,17 @@ MonoBehaviour:
   _speed: 123
   _damage: 123
   _gridCell: {fileID: 0}
+  SelectedVehicle: 0
   _steps: 1
   _canMove: 0
+  _reloadDelay: 5
+  _isReloading: 0
+  _bullets: 5
+  _bulletsConst: 0
+  _refBullet: {fileID: 2500770461063602522, guid: 71a9293939d0a8542b74503726dd2e49, type: 3}
+  _flagFirst: 1
+  _flagSecond: 0
+  _target: {fileID: 0}
 --- !u!1001 &3365934479371108957
 PrefabInstance:
   m_ObjectHideFlags: 0

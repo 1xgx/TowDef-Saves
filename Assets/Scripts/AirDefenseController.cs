@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -11,15 +12,17 @@ public class AirDefenseController : MonoBehaviour
     [SerializeField] private GameObject _missle;
     [SerializeField] private GameObject _missleSpawned;
     [SerializeField] private List<GameObject> _misslesSpawned;
-    [SerializeField] private float _missleSpeed;
-
     [Header("Bullets")]
     [SerializeField]
     private int _bullets;
+    [SerializeField]
+    private GameObject _refBullet;
     private int _bulletsConst;
     private bool _isReloading = false;
     private float _reloadDelay;
-
+    [Header("Test place")]
+    [SerializeField] private bool flag = true;
+    [SerializeField] private bool flag2 = false;
     private void Awake()
     {
         _bulletsConst = _bullets;
@@ -34,16 +37,40 @@ public class AirDefenseController : MonoBehaviour
         bool isFound = GameObject.FindWithTag("Missle");
         if (isFound)
         {
+            
             _target = GameObject.FindWithTag("Missle");
             transform.LookAt(_target.transform, Vector3.up);
+            if(flag && !flag2)MissleSpawner();
         }
     }
 
     private void MissleSpawner()
     {
+        flag2 = true;
+        if (_bullets == 0)
+        {
+            StopCoroutine(QueueOfBullets());
+            StartCoroutine(ReloadBullets());
+
+        }
+        StartCoroutine(QueueOfBullets());
         //Spawn missle
     }
-
+    
+    private IEnumerator QueueOfBullets()
+    {
+        GameObject newBullet = Instantiate(_refBullet, new Vector3(transform.position.x,0, transform.position.z), Quaternion.identity);
+        if (_target.IsDestroyed())
+        {
+            flag2 = false;
+            yield break;
+        }
+        Debug.Log(_target.name);
+        newBullet.GetComponent<MIssleOfAirDefenseController>().Target = _target.transform;
+        _bullets--;
+        yield return new WaitForSeconds(1.0f);
+        MissleSpawner();
+    }
     private IEnumerator ReloadBullets()
     {
         _isReloading = true;

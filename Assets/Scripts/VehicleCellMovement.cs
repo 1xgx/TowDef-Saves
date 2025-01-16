@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static Unity.IO.LowLevel.Unsafe.AsyncReadManagerMetrics;
 using static UnityEngine.GraphicsBuffer;
 
 public class VehicleCellMovement : MonoBehaviour
@@ -20,9 +21,19 @@ public class VehicleCellMovement : MonoBehaviour
     private GameObject[,] _cell;
     private (int, int) _goal;
     public (int, int) VehiclePosition;
+    public bool SelectedVehicle = false;
     [SerializeField] private int _steps = 1;
     [SerializeField] private bool _canMove = false;
-
+    [Header("Missle Setting")]
+    [SerializeField] private float _reloadDelay = 5.0f;
+    [SerializeField] private float _delayBetweenFire = 1.0f;
+    [SerializeField] private bool _isReloading = false;
+    [SerializeField] private int _bullets = 5;
+    [SerializeField] private int _bulletsConst;
+    [SerializeField] private GameObject _refBullet;
+    [SerializeField] private bool _flagFirst = true;
+    [SerializeField] private bool _flagSecond = false;
+    [SerializeField] private GameObject _target;
     public void Spawn()
     {
         _gridCell = GameObject.Find("Hexagons").GetComponent<GridCell>();
@@ -33,6 +44,14 @@ public class VehicleCellMovement : MonoBehaviour
         Debug.Log($"X: {_goal.Item1},Y: {_goal.Item2}");
         //_canMove = true;
         GetTagType();
+    }
+    private void Awake()
+    {
+        _bulletsConst = _bullets;
+    }
+    private void Update()
+    {
+        Shooting();
     }
     public void GetChoosedHexagon(int X, int Y, Transform target)
     {
@@ -76,6 +95,63 @@ public class VehicleCellMovement : MonoBehaviour
                 }
             }
         }
+    }
+    private void Shooting()
+    {
+        bool isFound = GameObject.FindWithTag("Missle");
+        if (isFound)
+        {
+
+            _target = GameObject.FindWithTag("Missle");
+            transform.LookAt(_target.transform, Vector3.up);
+            if (_flagFirst && !_flagSecond) MissleSpawner();
+        }
+    }
+    private void MissleSpawner()
+    {
+        if (_bullets < 0)
+        {
+            StopCoroutine(QueueOfBullets());
+            StartCoroutine(ReloadBullets());
+
+        }
+        
+        _flagSecond = true;
+        
+        if(_bullets > 0)StartCoroutine(QueueOfBullets());
+        //Spawn missle
+    }
+
+    private IEnumerator QueueOfBullets()
+    {
+        GameObject newBullet = Instantiate(_refBullet, new Vector3(transform.position.x, 0, transform.position.z), Quaternion.identity);
+        if (_target.IsDestroyed())
+        {
+            _flagSecond = false;
+            yield break;
+        }
+        if(_bullets < 0)
+        {
+            _flagSecond = false;
+            yield break;
+        }
+        Debug.Log(_target.name);
+        newBullet.GetComponent<MIssleOfAirDefenseController>().Target = _target.transform;
+        _bullets--;
+        yield return new WaitForSeconds(_delayBetweenFire);
+        MissleSpawner();
+    }
+    private IEnumerator ReloadBullets()
+    {
+        _isReloading = true;
+        Debug.Log("Reload start...");
+
+        yield return new WaitForSeconds(_reloadDelay);
+
+        _bullets = _bulletsConst;
+        Debug.Log("Reload end...");
+
+        _isReloading = false;
     }
 }
 

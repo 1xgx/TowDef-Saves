@@ -145,6 +145,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 0}
   _selectedTarget: {fileID: 0}
+  _missle: {fileID: 0}
+  _missleSpawned: {fileID: 0}
+  _misslesSpawned: []
+  _missleSpeed: 0
+  _bullets: 5
+  _refBullet: {fileID: 2500770461063602522, guid: 71a9293939d0a8542b74503726dd2e49, type: 3}
 --- !u!1001 &4235922631625709861
 PrefabInstance:
   m_ObjectHideFlags: 0
