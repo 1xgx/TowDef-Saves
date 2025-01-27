@@ -9,10 +9,10 @@ public class VehicleCellMovement : MonoBehaviour
 {
     [Header("Stats")]
     public float Health, MaxHealth = 100.0f;
-    public int indexX, indexY;
+    public int IndexX, IndexY;
     [SerializeField] private Transform _targetHexagon;
     [SerializeField] private float _speed;
-    [SerializeField] private float _damage; 
+    [SerializeField] private float _damage;
 
     [Header("Cell Movement Settings")]
     private List<(int, int)> _vehicleWay;
@@ -24,6 +24,8 @@ public class VehicleCellMovement : MonoBehaviour
     public bool SelectedVehicle = false;
     [SerializeField] private int _steps = 1;
     [SerializeField] private bool _canMove = false;
+    [Header ("Object Rotates")]
+    [SerializeField] private Transform _objectRotate;
     [Header("Missle Setting")]
     [SerializeField] private float _reloadDelay = 5.0f;
     [SerializeField] private float _delayBetweenFire = 1.0f;
@@ -33,7 +35,7 @@ public class VehicleCellMovement : MonoBehaviour
     [SerializeField] private GameObject _refBullet;
     [SerializeField] private bool _flagFirst = true;
     [SerializeField] private bool _flagSecond = false;
-    [SerializeField] private GameObject _target;
+    [SerializeField] private Transform _target;
     public void Spawn()
     {
         _gridCell = GameObject.Find("Hexagons").GetComponent<GridCell>();
@@ -41,8 +43,9 @@ public class VehicleCellMovement : MonoBehaviour
         Debug.Log($"Cell length: {_cell.GetLength(0)},{_cell.GetLength(1)}");
         _cellNumbers = new int[_cell.GetLength(0), _cell.GetLength(1)];
         Debug.Log($"Name of object: {_cell.Length}");
-        Debug.Log($"X: {_goal.Item1},Y: {_goal.Item2}");
         //_canMove = true;
+        VehiclePosition.Item1 = IndexX;
+        VehiclePosition.Item2 = IndexY;
         GetTagType();
     }
     private void Awake()
@@ -51,6 +54,12 @@ public class VehicleCellMovement : MonoBehaviour
     }
     private void Update()
     {
+        if (_canMove) 
+        {
+            gameObject.GetComponent<BoxCollider>().size = new Vector3(0.7f,gameObject.GetComponent<BoxCollider>().size.y + .7f,0.6f);
+            gameObject.GetComponent<BoxCollider>().isTrigger = true;
+            ObjectMove(); 
+        }
         Shooting();
     }
     public void GetChoosedHexagon(int X, int Y, Transform target)
@@ -67,10 +76,10 @@ public class VehicleCellMovement : MonoBehaviour
 
         if (_vehicleWay != null)
         {
-            Debug.Log("Found a way");
+            Debug.Log("Found a way" + gameObject.name + "! ! !");
             foreach (var step in _vehicleWay)
             {
-                // Debug.Log($"{step.Item1},{step.Item2}");
+                Debug.Log($"{step.Item1},{step.Item2}");
             }
         }
         else
@@ -96,14 +105,38 @@ public class VehicleCellMovement : MonoBehaviour
             }
         }
     }
+    private void ObjectMove()//Метод передвижения 
+    {
+
+        if (_cell != null && _vehicleWay != null)
+        {
+            Debug.Log(_vehicleWay.Count + " :Missle ways Count");
+            Vector3 tmpTransform = _cell[_vehicleWay[_steps].Item1, _vehicleWay[_steps].Item2].transform.position;
+            Vector3 MoveDirection;
+            if (_steps + 1 > _vehicleWay.Count - 1)
+            {
+                transform.LookAt(_cell[_vehicleWay[_steps].Item1, _vehicleWay[_steps].Item2].transform.position, Vector3.up);
+                transform.Rotate(0, 180, 0);
+            }
+            else
+            {
+                transform.LookAt(_cell[_vehicleWay[_steps + 1].Item1, _vehicleWay[_steps + 1].Item2].transform.position, Vector3.up);
+                transform.Rotate(0, 180, 0);
+            }
+            MoveDirection = new Vector3(tmpTransform.x - transform.position.x, 0, tmpTransform.z - transform.position.z).normalized;
+            transform.position += MoveDirection * _speed * Time.deltaTime;
+            Debug.Log(_steps);
+        }
+    }
     private void Shooting()
     {
-        bool isFound = GameObject.FindWithTag("Missle");
-        if (isFound)
+        
+        if (_target != null)
         {
 
-            _target = GameObject.FindWithTag("Missle");
-            transform.LookAt(_target.transform, Vector3.up);
+            //_target = GameObject.FindWithTag("Missle").transform;
+            _objectRotate.LookAt(_target.transform, Vector3.down);
+            _objectRotate.Rotate(0, 180, 0);
             if (_flagFirst && !_flagSecond) MissleSpawner();
         }
     }
@@ -136,7 +169,7 @@ public class VehicleCellMovement : MonoBehaviour
             yield break;
         }
         Debug.Log(_target.name);
-        newBullet.GetComponent<MIssleOfAirDefenseController>().Target = _target.transform;
+        newBullet.GetComponent<MIssleOfAirDefenseController>().Target = _target;
         _bullets--;
         yield return new WaitForSeconds(_delayBetweenFire);
         MissleSpawner();
@@ -152,6 +185,48 @@ public class VehicleCellMovement : MonoBehaviour
         Debug.Log("Reload end...");
 
         _isReloading = false;
+    }
+    private IEnumerator WaitAndMove()
+    {
+        yield return new WaitForSeconds(1.0f);
+        _canMove = true;
+
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Missle") 
+        {
+            _target = other.GetComponent<Transform>();
+
+            Debug.Log($"target {_target}");
+        }
+        if (other.tag == "Zone" || other.tag == "WaterZone")
+        {
+            if (other.GetComponent<SixAngelSelection>() && other.GetComponent<SixAngelSelection>() != null && other.GetComponent<SixAngelSelection>().IndexX == _cell[_vehicleWay[_steps].Item1, _vehicleWay[_steps].Item2].GetComponent<SixAngelSelection>().IndexX &&
+                other.GetComponent<SixAngelSelection>().IndexY == _cell[_vehicleWay[_steps].Item1, _vehicleWay[_steps].Item2].GetComponent<SixAngelSelection>().IndexY)
+            {
+                Debug.Log("Ok_1");
+                transform.position = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
+                _canMove = false;
+                _steps++;
+                if (_steps < _vehicleWay.Count)
+                {
+                    Debug.Log("Ok_2");
+
+                    StartCoroutine(WaitAndMove());
+                }
+                else
+                {
+                    GameObject.FindWithTag("Player").GetComponent<PlayerController>()._selectedObject.GetComponent<SixAngelSelection>().ReferenceOfObject = gameObject;
+                    GameObject.FindWithTag("Player").GetComponent<PlayerController>()._selectedObject = null;
+                }
+            }
+            else
+            {
+                Debug.Log("IDK");
+            }
+
+        }
     }
 }
 

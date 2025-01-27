@@ -8,14 +8,17 @@ public class PlayerController : MonoBehaviour
 {
 
 
-
+    readonly private string MilitaryObject = "Military_Object";
     [Header("Build")]
     [SerializeField] private GameObject _airDeffense;
     [SerializeField] private GameObject _tower;
     [SerializeField] private GameObject _radar;
     [SerializeField] private GameObject _gepard;//Test
+    [SerializeField] private GameObject _mobileGroup;//Test
     public GameObject _selectedObject;
-    
+    [SerializeField] private GameObject _tmpSelectedObject;
+    [SerializeField] private GameObject _tmpCellSelectedObject;
+    [SerializeField] private List<GameObject> _AllReservedCell;
     [Header("Tools")]
     [SerializeField] private string[] _nameZone;
     [SerializeField] private GameManager _gameManager;
@@ -25,6 +28,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private List<GameObject> _airDefenses;
     [SerializeField] private List<GameObject> _radars;
     [SerializeField] private List<GameObject> _gepards;//Test list
+    [SerializeField] private List<GameObject> _mobileGroups;//Test list
     [Header("Swipe Detects")]
     [SerializeField] private Transform _stabilizator;
     [SerializeField] private float _cameraSpeed;
@@ -123,13 +127,23 @@ public class PlayerController : MonoBehaviour
                     Debug.Log("Нажали на объект: " + hit.collider.gameObject.name);
                     if (_selectedObject) _selectedObject = null;
                     _selectedObject = hit.collider.gameObject;
-                    if (_selectedObject.tag == "Plane") return;
+                    if (_selectedObject.tag == "Plane")
+                    {
+                        _selectedObject = null;
+                        return;
+                    }
                     if (_selectedObject != null && _selectedObject.tag == "DeadZone" || _selectedObject.tag == "Zone" || _selectedObject.tag == "WaterZone")
                     {
                         _selectedObject.gameObject.GetComponent<SixAngelSelection>().ActiveObject.SetActive(false);
                         _selectedObject.gameObject.GetComponent<SixAngelSelection>().UnactiveObject.SetActive(true);
                         _selectedObject.gameObject.GetComponent<SixAngelSelection>().tmpSelectedObject = gameObject;
 
+                    }
+                    else if(_selectedObject.tag == MilitaryObject)
+                    {
+                        _selectedObject.transform.localScale = new Vector3(_selectedObject.transform.localScale.x + .1f, _selectedObject.transform.localScale.y + .1f, _selectedObject.transform.localScale.z + .1f);
+                        _tmpSelectedObject = _selectedObject;
+                        _gameManager.SelectedObject = "nothing";
                     }
                     else
                     {
@@ -151,6 +165,7 @@ public class PlayerController : MonoBehaviour
         bool AirDeffenseCanBuilt = _airDefenses.Count > 3 && _gameManager.SelectedObject == "1";
         bool RadarCanBuilt = _radars.Count > 3 && _gameManager.SelectedObject == "2";
         bool GepardCanBuilt = _gepards.Count > 1 && _gameManager.SelectedObject == "TestGepard";
+        bool MGroupCanBuilt = _mobileGroups.Count > 1 && _gameManager.SelectedObject == "TestMGroup";
         
 
 
@@ -162,6 +177,7 @@ public class PlayerController : MonoBehaviour
             case "1": _choosedObject = _airDeffense; break;
             case "2":_choosedObject = _radar; break;
             case "TestGepard": _choosedObject = _gepard; break;
+            case "TestMGroup": _choosedObject = _mobileGroup; break;
         }
         
 
@@ -183,12 +199,28 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
+
                     if (_towers.Count > 0 && _gameManager.SelectedObject == "0")
                     {
                         if (_gameManager.FightIsStarted) return;
                         _towers[0].gameObject.transform.position = towerOffset;
                         _towers[0].GetComponent<Tower>().indexX = _selectedObject.GetComponent<SixAngelSelection>().IndexX;
                         _towers[0].GetComponent<Tower>().indexY = _selectedObject.GetComponent<SixAngelSelection>().IndexY;
+                    }
+                    else if (_tmpSelectedObject != null && _tmpSelectedObject.tag == MilitaryObject)//Test Gepard and MobileGroup
+                    {
+                        _selectedObject.GetComponent<SixAngelSelection>().ReferenceOfObject = _tmpSelectedObject;
+                        _tmpSelectedObject.transform.localScale = new Vector3(_tmpSelectedObject.transform.localScale.x - .1f, _tmpSelectedObject.transform.localScale.y - 0.1f, _tmpSelectedObject.transform.localScale.z - 0.1f);
+                        _tmpSelectedObject.GetComponent<VehicleCellMovement>().GetChoosedHexagon(_selectedObject.GetComponent<SixAngelSelection>().IndexX, _selectedObject.GetComponent<SixAngelSelection>().IndexY, _selectedObject.transform);
+                        //for(int i = 0; i < _AllReservedCell.Count; i++)
+                        //{
+                        //    if(_selectedObject.GetComponent<SixAngelSelection>().ReferenceOfObject == _AllReservedCell[i].GetComponent<SixAngelSelection>().ReferenceOfObject)
+                        //    {
+                        //        _tmpCellSelectedObject = _AllReservedCell[i];
+                        //        Debug.Log("I Find");
+                        //    }
+                        //}
+                        _tmpSelectedObject = null;
                     }
                     else
                     {
@@ -198,14 +230,13 @@ public class PlayerController : MonoBehaviour
                         {
                             case "0":
                                 if (CheckSelectedObject(_towers, _selectedObject)) return;
-                                if (_towers.Count <= 0) _towers.Add(newBuild);
+                                if (_towers.Count <= 0) _towers.Add(newBuild); _AllReservedCell.Add(newBuild);
                                 _towers[0].GetComponent<Tower>().indexX = _selectedObject.GetComponent<SixAngelSelection>().IndexX;
                                 _towers[0].GetComponent<Tower>().indexY = _selectedObject.GetComponent<SixAngelSelection>().IndexY;
-
                                 break;
                             case "1":
                                 if (CheckSelectedObject(_airDefenses, _selectedObject)) return;
-                                _airDefenses.Add(newBuild);
+                                _airDefenses.Add(newBuild); _AllReservedCell.Add(newBuild);
                                 if (_radars.Count > 0)
                                 {
                                     for (int i = 0; i < _radars.Count; i++)
@@ -218,16 +249,26 @@ public class PlayerController : MonoBehaviour
                                 break;
                             case "2":
                                 if (CheckSelectedObject(_radars, _selectedObject)) return;
-                                _radars.Add(newBuild);
+                                _radars.Add(newBuild); _AllReservedCell.Add(newBuild);
                                 break;
                             case "TestGepard": //Test list
                                 
-                                newBuild.GetComponent<VehicleCellMovement>().indexX = _selectedObject.GetComponent<SixAngelSelection>().IndexX;
-                                newBuild.GetComponent<VehicleCellMovement>().indexY = _selectedObject.GetComponent<SixAngelSelection>().IndexY;
+                                newBuild.GetComponent<VehicleCellMovement>().IndexX = _selectedObject.GetComponent<SixAngelSelection>().IndexX;
+                                newBuild.GetComponent<VehicleCellMovement>().IndexY = _selectedObject.GetComponent<SixAngelSelection>().IndexY;
                                 _gepards.Add(newBuild);
-
+                                _AllReservedCell.Add(newBuild);
+                                break;
+                            case "TestMGroup":
+                                newBuild.GetComponent<VehicleCellMovement>().VehiclePosition.Item1 = _selectedObject.GetComponent<SixAngelSelection>().IndexX;
+                                newBuild.GetComponent<VehicleCellMovement>().VehiclePosition.Item2 = _selectedObject.GetComponent<SixAngelSelection>().IndexY;
+                                newBuild.GetComponent<VehicleCellMovement>().IndexX = _selectedObject.GetComponent<SixAngelSelection>().IndexX;
+                                newBuild.GetComponent<VehicleCellMovement>().IndexY = _selectedObject.GetComponent<SixAngelSelection>().IndexY;
+                                newBuild.GetComponent<VehicleCellMovement>().Spawn();
+                                _AllReservedCell.Add(newBuild);
+                                _mobileGroups.Add(newBuild);
                                 break;
                         }
+                        
                     }
                 }
             }

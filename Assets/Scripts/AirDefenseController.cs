@@ -7,7 +7,7 @@ using static UnityEngine.GraphicsBuffer;
 public class AirDefenseController : MonoBehaviour
 {
     [Header ("Settings")]
-    [SerializeField] private GameObject _target;
+    [SerializeField] private Transform _target;
     [SerializeField] private GameObject _selectedTarget;
     [SerializeField] private GameObject _missle;
     [SerializeField] private GameObject _missleSpawned;
@@ -30,17 +30,23 @@ public class AirDefenseController : MonoBehaviour
 
     private void Update()
     {
-        Shooting();
+
     }
-    private void Shooting()
+    public void Shooting(Transform target)
     {
-        bool isFound = GameObject.FindWithTag("Missle");
+        Transform TestTarget = GameObject.FindWithTag("Missle").transform;
+        bool isFound = false;
         if (isFound)
-        {
-            
-            _target = GameObject.FindWithTag("Missle");
+        { 
+            _target = TestTarget;
             transform.LookAt(_target.transform, Vector3.up);
-            if(flag && !flag2)MissleSpawner();
+            if (flag && !flag2) MissleSpawner();
+        }
+        _target = target;
+        if(target.tag == "Missle")
+        {
+            transform.LookAt(target.transform, Vector3.up);
+            if (flag && !flag2) MissleSpawner();
         }
     }
 

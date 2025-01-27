@@ -11,6 +11,7 @@ TagManager:
   - Tower
   - AirDefense
   - Plane
+  - Military_Object
   layers:
   - Default
   - TransparentFX

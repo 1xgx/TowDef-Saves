@@ -26,6 +26,7 @@ public class RadarDetection : MonoBehaviour
             _objectTrigger = other.GetComponent<Transform>();
             FindNearestAirDefense();
             Debug.Log(nearestAirDefense.name);
+            nearestAirDefense.GetComponent<AirDefenseController>().Shooting(_objectTrigger);
         }
     }
     private void OnTriggerExit(Collider other)
