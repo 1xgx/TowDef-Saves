@@ -36,6 +36,8 @@ public class VehicleCellMovement : MonoBehaviour
     [SerializeField] private bool _flagFirst = true;
     [SerializeField] private bool _flagSecond = false;
     [SerializeField] private Transform _target;
+    private BoxCollider _boxCollider;
+    private (float, float, float) _boxColliderSize;
     public void Spawn()
     {
         _gridCell = GameObject.Find("Hexagons").GetComponent<GridCell>();
@@ -44,26 +46,29 @@ public class VehicleCellMovement : MonoBehaviour
         _cellNumbers = new int[_cell.GetLength(0), _cell.GetLength(1)];
         Debug.Log($"Name of object: {_cell.Length}");
         //_canMove = true;
-        VehiclePosition.Item1 = IndexX;
-        VehiclePosition.Item2 = IndexY;
         GetTagType();
     }
     private void Awake()
     {
+        _boxCollider = GetComponent<BoxCollider>();
+        _boxColliderSize.Item1 = _boxCollider.size.x;
+        _boxColliderSize.Item2 = _boxCollider.size.y;
+        _boxColliderSize.Item3 = _boxCollider.size.z;
         _bulletsConst = _bullets;
     }
     private void Update()
     {
         if (_canMove) 
         {
-            gameObject.GetComponent<BoxCollider>().size = new Vector3(0.7f,gameObject.GetComponent<BoxCollider>().size.y + .7f,0.6f);
-            gameObject.GetComponent<BoxCollider>().isTrigger = true;
+            _boxCollider.size = new Vector3(0.7f,1.0f,0.6f);
+            _boxCollider.isTrigger = true;
             ObjectMove(); 
         }
         Shooting();
     }
-    public void GetChoosedHexagon(int X, int Y, Transform target)
+    public void GetChoosedHexagon(int X, int Y, Transform target, bool CanMove)
     {
+        _canMove = CanMove;
         _targetHexagon = target;
         _goal.Item1 = X;
         _goal.Item2 = Y;
@@ -71,6 +76,7 @@ public class VehicleCellMovement : MonoBehaviour
     }
     private void GetObjectWay(int[,] grid, (int, int) start, (int, int) goal)
     {
+        
         List<(int, int)> path = AStar.FindPath(grid, start, goal);
         _vehicleWay = path;
 
@@ -107,12 +113,12 @@ public class VehicleCellMovement : MonoBehaviour
     }
     private void ObjectMove()//Метод передвижения 
     {
-
-        if (_cell != null && _vehicleWay != null)
+        if (_cell != null && _vehicleWay != null && _vehicleWay.Count > _steps)
         {
             Debug.Log(_vehicleWay.Count + " :Missle ways Count");
             Vector3 tmpTransform = _cell[_vehicleWay[_steps].Item1, _vehicleWay[_steps].Item2].transform.position;
             Vector3 MoveDirection;
+            
             if (_steps + 1 > _vehicleWay.Count - 1)
             {
                 transform.LookAt(_cell[_vehicleWay[_steps].Item1, _vehicleWay[_steps].Item2].transform.position, Vector3.up);
@@ -125,8 +131,9 @@ public class VehicleCellMovement : MonoBehaviour
             }
             MoveDirection = new Vector3(tmpTransform.x - transform.position.x, 0, tmpTransform.z - transform.position.z).normalized;
             transform.position += MoveDirection * _speed * Time.deltaTime;
-            Debug.Log(_steps);
+            
         }
+        
     }
     private void Shooting()
     {
@@ -214,6 +221,13 @@ public class VehicleCellMovement : MonoBehaviour
                     Debug.Log("Ok_2");
 
                     StartCoroutine(WaitAndMove());
+                }
+                else if (_steps == _vehicleWay.Count) 
+                {
+                    _vehicleWay = null;
+                    _steps = 1;
+                    _boxCollider.isTrigger = false;
+                    _boxCollider.size = new Vector3(_boxColliderSize.Item1, _boxColliderSize.Item2, _boxColliderSize.Item3);
                 }
                 else
                 {

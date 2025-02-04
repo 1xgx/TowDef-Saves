@@ -35,6 +35,10 @@ public class MissleCellController : MonoBehaviour
         GetTagType();
         
     }
+    private void Awake()
+    {
+        transform.position = new Vector3(transform.position.x, transform.position.y + .1f, transform.position.z);
+    }
     private void GetObjectWay(int[,] grid, (int,int) start, (int, int) goal)
     {
         List<(int, int)> path = AStar.FindPath(grid, start, goal);
