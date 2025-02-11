@@ -1267,6 +1267,7 @@ MonoBehaviour:
   isGameActive: 0
   FightIsStarted: 0
   SelectedObject: 0
+  _player: {fileID: 899244618}
 --- !u!114 &614329855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1785,7 +1786,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _airDeffense: {fileID: 6534297857220710281, guid: 5d6529ea03d1c7c49a702a126ed4f501, type: 3}
-  _tower: {fileID: 5620967837023556285, guid: fadbdc45b04a2894097f9f91a43ff4fe, type: 3}
+  _electroStation: {fileID: 5620967837023556285, guid: fadbdc45b04a2894097f9f91a43ff4fe, type: 3}
+  _subElectroStations:
+  - {fileID: 4055469595693136558, guid: 69bb28c98f9a03845b6687da753ab738, type: 3}
   _radar: {fileID: 5513951649785449163, guid: 22b4a90dc1f506645a8eeea2d82ac276, type: 3}
   _gepard: {fileID: 1383920481807969626, guid: 9bb4d1b4473c6514ca5f377aef083dee, type: 3}
   _mobileGroup: {fileID: 4071253049366143338, guid: 64e296c0892dc4a458ff2c1a20a12abd, type: 3}
@@ -1803,8 +1806,11 @@ MonoBehaviour:
   _gameManager: {fileID: 614329854}
   _selectMode: 0
   _builtMode: 1
+  _AdminBool: 0
   _timer: {fileID: 1767627851}
-  _towers: []
+  _currentTime: 1000
+  _electroStations: []
+  _subElectroStationList: []
   _airDefenses: []
   _radars: []
   _gepards: []
@@ -2038,7 +2044,7 @@ GameObject:
   - component: {fileID: 1048894273}
   - component: {fileID: 1048894272}
   m_Layer: 5
-  m_Name: TestSwipe
+  m_Name: Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2107,7 +2113,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1048894273}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 614329854}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: BuildSelection
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Change
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1048894273
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -21,8 +21,8 @@ public class Missle : MonoBehaviour
         if(_target == null)_target = GameObject.FindWithTag("Tower").GetComponent<Transform>();
         switch (missleType)
         {
-            case "cell": Debug.Log($"{_target.GetComponent<Tower>().indexX}"); 
-                _missleCellContoroller.getTargetObject(_target.GetComponent<Tower>().indexX, _target.GetComponent<Tower>().indexY, _target); break;
+            case "cell": Debug.Log($"{_target.GetComponent<ElectroStation>().indexX}"); 
+                _missleCellContoroller.getTargetObject(_target.GetComponent<ElectroStation>().indexX, _target.GetComponent<ElectroStation>().indexY, _target); break;
 
             case "line": _missleLineContoroller.getTargetObject(_target); break;
         }

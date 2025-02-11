@@ -112,7 +112,7 @@ public class MissleCellController : MonoBehaviour
     {
         if (other.tag == "Tower")
         {
-            _target.GetComponent<Tower>().TakeDamage(_damage);
+            _target.GetComponent<ElectroStation>().TakeDamage(_damage);
             Destroy(gameObject);
         }
         if (other.tag == "Zone" || other.tag == "WaterZone")

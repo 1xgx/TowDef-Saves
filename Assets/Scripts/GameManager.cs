@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public bool isGameActive;
     public bool FightIsStarted;
     public string SelectedObject = "0";
+    [SerializeField] private PlayerController _player;
     public void restartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -31,10 +32,9 @@ public class GameManager : MonoBehaviour
     }
     public void BuildSelection(string message)
     {
-        
         SelectedObject = message;
         Debug.Log(message);
-        
+        _player.ObjectSetPositionOnHexagon(message);
     }
     public void Exit()
     {

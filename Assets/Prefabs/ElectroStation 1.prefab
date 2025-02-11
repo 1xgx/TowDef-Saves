@@ -564,7 +564,7 @@ GameObject:
   - component: {fileID: 4336899010761249071}
   - component: {fileID: 7901344694718570401}
   - component: {fileID: 573566048374594536}
-  - component: {fileID: 9139340862644177223}
+  - component: {fileID: 2628162226963230484}
   m_Layer: 0
   m_Name: ElectroStation 1
   m_TagString: Tower
@@ -637,7 +637,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.4763172, z: 1}
   m_Center: {x: 0, y: 0.16815864, z: -0.23000002}
---- !u!114 &9139340862644177223
+--- !u!114 &2628162226963230484
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -646,7 +646,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5620967837023556285}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0377a82f7a982c343ad9d03ace9ccb7a, type: 3}
+  m_Script: {fileID: 11500000, guid: ebb92d620a52c3446a368ca57ab6b541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   indexX: 0

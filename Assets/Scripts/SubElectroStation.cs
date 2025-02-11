@@ -1,22 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class Tower : MonoBehaviour
+public class SubElectroStation : MonoBehaviour
 {
     public static float _health, _maxHealth = 1000.0f;
     public int indexX, indexY;
     [SerializeField] private BuildingHealth healthBar;
-    
+    public GameObject ElectroStation;
     private void Awake()
     {
         healthBar = GetComponentInChildren<BuildingHealth>();
     }
-    private void Start()
+    void Start()
     {
         _health = _maxHealth;
     }
+
+    // Update is called once per frame
     public void TakeDamage(float damageAmount)
     {
         _health -= damageAmount;
@@ -26,9 +27,8 @@ public class Tower : MonoBehaviour
             Die();
         }
     }
-    private void Die() 
+    private void Die()
     {
-        SceneManager.LoadSceneAsync(0);
-
+        Debug.Log("SubElectrostationDied");
     }
 }
