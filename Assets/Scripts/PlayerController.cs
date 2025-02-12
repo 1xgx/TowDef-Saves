@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
     private TouchControlls _controls;
     private Camera _camera;
     private Transform _cameraTransform;
-    private GameObject _choosedObject;
+    [SerializeField] private GameObject _choosedObject;
     private Coroutine _swipeCoroutine;
 
     [Header("Information")]
@@ -312,7 +312,7 @@ public class PlayerController : MonoBehaviour
                             _mobileGroups.Add(newBuild);
                             break;
                     }
-                    message = "0";
+                    message = " ";
                     _choosedObject = null;
                 }
             }
@@ -340,10 +340,10 @@ public class PlayerController : MonoBehaviour
         Vector3 towerOffset = new Vector3(0,0,0);
         switch (_gameManager.SelectedObject)
         {
-            case "1": _choosedObject = _airDeffense; break;
-            case "2":_choosedObject = _radar; break;
-            case "TestGepard": _choosedObject = _gepard; break;//Test
-            case "TestMGroup": _choosedObject = _mobileGroup; break;//Test
+            //case "1": _choosedObject = _airDeffense; break;
+            //case "2":_choosedObject = _radar; break;
+            //case "TestGepard": _choosedObject = _gepard; break;//Test
+            //case "TestMGroup": _choosedObject = _mobileGroup; break;//Test
             case "Go":
                 if(_selectedObject != null && _tmpSelectedObject != null)
                 {

@@ -1817,6 +1817,7 @@ MonoBehaviour:
   _mobileGroups: []
   _stabilizator: {fileID: 1545706742}
   _cameraSpeed: 25
+  _choosedObject: {fileID: 0}
   _battleMenu: {fileID: 440585871}
 --- !u!1 &963194225
 GameObject:
@@ -3237,7 +3238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 393884629467966449, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: 0
+      value: '-'
       objectReference: {fileID: 0}
     - target: {fileID: 393884629467966449, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
