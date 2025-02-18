@@ -23,6 +23,11 @@ public class MissleCellController : MonoBehaviour
     private (int, int) _goal;
     [SerializeField]private int _steps = 1;
     [SerializeField]private bool _canMove = false;
+    //Health
+    [Header("Health")]
+    [SerializeField] private float _health;
+    [SerializeField] private float _maxHealth;
+    [SerializeField] private BuildingHealth healthBar;
     public void Spawn()
     {
         _gridCell = GameObject.Find("Hexagons").GetComponent<GridCell>();
@@ -33,10 +38,13 @@ public class MissleCellController : MonoBehaviour
         Debug.Log($"X: {_goal.Item1},Y: {_goal.Item2}");
         _canMove = true;
         GetTagType();
-        
+        //healthBar = GetComponentInChildren<BuildingHealth>();
+        _health = _maxHealth;
+
     }
     private void Awake()
     {
+
         transform.position = new Vector3(transform.position.x, transform.position.y + .1f, transform.position.z);
     }
     private void GetObjectWay(int[,] grid, (int,int) start, (int, int) goal)
@@ -140,6 +148,16 @@ public class MissleCellController : MonoBehaviour
                 Debug.Log("IDK");
             }
             
+        }
+    }
+    public void TakeDamage(float damageAmount)
+    {
+        _health -= damageAmount;
+        healthBar.UpdateHealthBar(_health, _maxHealth);
+        if (_health <= 0)
+        {
+            Destroy(gameObject);
+
         }
     }
     private IEnumerator WaitAndMove()

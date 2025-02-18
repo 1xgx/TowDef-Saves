@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BattleMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _buttons;
+    public GameObject[] _buttons;
     public void HideOtherMenu(string ButtonClicked)
     {
         switch (ButtonClicked)

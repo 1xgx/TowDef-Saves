@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
     private int indexX, indexY;
 
     [SerializeField] private GameObject _battleMenu; //Test Variant
+    [SerializeField] private GameObject _subButttleMenu; //Test Variant
     
     private void Awake()
     {
@@ -215,8 +216,18 @@ public class PlayerController : MonoBehaviour
                         _selectedObject.gameObject.GetComponent<SixAngelSelection>().ActiveObject.SetActive(false);
                         _selectedObject.gameObject.GetComponent<SixAngelSelection>().UnactiveObject.SetActive(true);
                         _selectedObject.gameObject.GetComponent<SixAngelSelection>().tmpSelectedObject = gameObject;
-                        if (_geoPointRef != null) _geoPointRef.transform.position = new Vector3(_selectedObject.transform.position.x,0,_selectedObject.transform.position.z);
-                        _battleMenu.SetActive(true);
+                        if (_geoPointRef != null)
+                        {
+                            _geoPointRef.transform.position = new Vector3(_selectedObject.transform.position.x, 0, _selectedObject.transform.position.z);
+                            //_subButttleMenu.transform.position = new Vector3(_geoPointRef.transform.position.x, _geoPointRef.transform.position.y, _geoPointRef.transform.position.z);
+                            //_subButttleMenu.GetComponent<BattleMenu>()._buttons[2].GetComponent<BattleMenuSubButtons>().BattleMenu[3].SetActive(false);
+                        }
+                        else
+                        {
+
+                        }
+                        //if(_subButttleMenu.active == false)
+                            _battleMenu.SetActive(true);
                         _battleMenu.transform.position = new Vector3(_selectedObject.transform.position.x, 1.0f, _selectedObject.transform.position.z);
 
 
@@ -230,6 +241,9 @@ public class PlayerController : MonoBehaviour
                         _gameManager.SelectedObject = "nothing";
                         _selectMode = true;
                         _builtMode = false;
+                        //_battleMenu.SetActive(false);
+                        //_subButttleMenu.SetActive(true);
+                        //_subButttleMenu.transform.position = new Vector3(_geoPointRef.transform.position.x, _geoPointRef.transform.position.y, _geoPointRef.transform.position.z);
                     }
                     else
                     {
@@ -255,7 +269,9 @@ public class PlayerController : MonoBehaviour
             case "TestGepard": _choosedObject = _gepard; break;//Test
             case "TestMGroup": _choosedObject = _mobileGroup; break;//Test
             case "Change": _gameManager.FightIsStarted = true; break;
+            case "Go": ObjectSetPosition(); break;
         }
+        _battleMenu.SetActive(false);
         if (isNotNull)
         {
             towerOffset = new Vector3(_selectedObject.transform.position.x, 0.3f, _selectedObject.transform.position.z);
@@ -317,6 +333,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+        _selectedObject = null;
     }
     private bool HexagonIsBusy()
     {
@@ -360,6 +377,8 @@ public class PlayerController : MonoBehaviour
                     _tmpSelectedObject = null;
                     _builtMode = true;
                     _selectMode = false;
+                    _subButttleMenu.active = false;
+                    _battleMenu.SetActive(true);
                     Destroy(_geoPointRef);
                 }
                 break;

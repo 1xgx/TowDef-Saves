@@ -5,6 +5,7 @@ using UnityEngine;
 public class MIssleOfAirDefenseController : MonoBehaviour
 {
     public Transform Target;
+    private float _damage = 10.0f;
     [SerializeField]private float _speed = 100f;
 
     private void Update()
@@ -22,8 +23,11 @@ public class MIssleOfAirDefenseController : MonoBehaviour
     {
         if(other.tag == "Missle")
         {
-           
-            Destroy(other.gameObject);
+            if (other.GetComponent<MissleCellController>())
+            {
+                other.GetComponent<MissleCellController>().TakeDamage(10.0f);
+            }
+            //Destroy(other.gameObject);
             Destroy(gameObject);
             
         }
