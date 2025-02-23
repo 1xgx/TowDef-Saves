@@ -4,8 +4,10 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 public class PlayerController : MonoBehaviour
 {
 
@@ -220,11 +222,17 @@ public class PlayerController : MonoBehaviour
                         {
                             _geoPointRef.transform.position = new Vector3(_selectedObject.transform.position.x, 0, _selectedObject.transform.position.z);
                             //_subButttleMenu.transform.position = new Vector3(_geoPointRef.transform.position.x, _geoPointRef.transform.position.y, _geoPointRef.transform.position.z);
-                            //_subButttleMenu.GetComponent<BattleMenu>()._buttons[2].GetComponent<BattleMenuSubButtons>().BattleMenu[3].SetActive(false);
+
+                            UnityEngine.UI.Button newBut = _battleMenu.GetComponent<BattleMenu>()._buttons[2].GetComponent<BattleMenuSubButtons>().BattleMenu[3].GetComponent<UnityEngine.UI.Button>();
+                            newBut.interactable = true;
+
+
                         }
                         else
                         {
-
+                            //_subButttleMenu.GetComponent<BattleMenu>()._buttons[2].GetComponent<BattleMenuSubButtons>().BattleMenu[3].interactable = true;
+                            UnityEngine.UI.Button newBut = _battleMenu.GetComponent<BattleMenu>()._buttons[2].GetComponent<BattleMenuSubButtons>().BattleMenu[3].GetComponent<UnityEngine.UI.Button>();
+                            newBut.interactable = false;
                         }
                         //if(_subButttleMenu.active == false)
                             _battleMenu.SetActive(true);
