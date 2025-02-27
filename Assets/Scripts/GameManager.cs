@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public bool FightIsStarted;
     public string SelectedObject = "0";
     [SerializeField] private PlayerController _player;
+    public List<Transform> Towers;
     public void restartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -40,4 +41,11 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
+    public Transform randomElectroStationForMissle() 
+    {
+        Transform TargetObject = Towers[Random.Range(0,Towers.Count)];
+
+        return TargetObject;
+    }
+
 }

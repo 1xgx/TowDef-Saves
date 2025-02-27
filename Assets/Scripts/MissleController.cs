@@ -53,5 +53,10 @@ public class MissleController : MonoBehaviour
             _target.GetComponent<ElectroStation>().TakeDamage(_damage);
             Destroy(gameObject);
         }
+        else if (other.tag == "SubTower")
+        {
+            _target.GetComponent<SubElectroStation>().TakeDamage(_damage);
+            Destroy(gameObject);
+        }
     }
 }

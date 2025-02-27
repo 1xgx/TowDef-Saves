@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
             if (_electroStations.Count <= 0) _electroStations.Add(NewBuild); _AllReservedCell.Add(NewBuild);
             _electroStations[0].GetComponent<ElectroStation>().indexX = _hexagonGrid[x, y].GetComponent<SixAngelSelection>().IndexX;
             _electroStations[0].GetComponent<ElectroStation>().indexY = _hexagonGrid[x, y].GetComponent<SixAngelSelection>().IndexY;
-            
+            _gameManager.Towers.Add(NewBuild.GetComponent<Transform>());
         }
         else
         {
@@ -111,7 +111,6 @@ public class PlayerController : MonoBehaviour
     }
     private void SpawnSubElectroStation()
     {
-        Debug.Log("Hello World");
         foreach(var SubElectroStation in _subElectroStations)
         {
             _hexagonGrid = _cells.GetComponent<GridCell>()._hexagonGrid;
@@ -124,6 +123,7 @@ public class PlayerController : MonoBehaviour
                 NewBuild.GetComponent<SubElectroStation>().indexX = _hexagonGrid[x, y].GetComponent<SixAngelSelection>().IndexX;
                 NewBuild.GetComponent<SubElectroStation>().indexY = _hexagonGrid[x, y].GetComponent<SixAngelSelection>().IndexY;
                 NewBuild.GetComponent<SubElectroStation>().ElectroStation = _electroStations[0];
+                _gameManager.Towers.Add(NewBuild.GetComponent<Transform>());
             }
             else
             {

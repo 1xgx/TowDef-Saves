@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 7055891152754735271}
   m_Layer: 0
   m_Name: SubElectroStation (2)
-  m_TagString: Untagged
+  m_TagString: SubTower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

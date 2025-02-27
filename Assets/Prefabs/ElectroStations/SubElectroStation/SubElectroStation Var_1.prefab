@@ -899,7 +899,7 @@ GameObject:
   - component: {fileID: 3056124442320325850}
   m_Layer: 0
   m_Name: SubElectroStation Var_1
-  m_TagString: Tower
+  m_TagString: SubTower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

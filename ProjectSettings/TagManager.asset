@@ -12,6 +12,8 @@ TagManager:
   - AirDefense
   - Plane
   - Military_Object
+  - SubTower
+  - GameManager
   layers:
   - Default
   - TransparentFX
