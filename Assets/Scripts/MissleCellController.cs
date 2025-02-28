@@ -118,8 +118,10 @@ public class MissleCellController : MonoBehaviour
     }//метод который получает местоположение башни
     private void OnTriggerEnter(Collider other)
     {
+        if (other.tag == "Tower" || other.tag == "SubTower" && _target.tag != other.tag) return;
         if (other.tag == "Tower" )
         {
+            
             _target.GetComponent<ElectroStation>().TakeDamage(_damage);
             Destroy(gameObject);
         }

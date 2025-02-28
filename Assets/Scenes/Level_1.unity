@@ -2158,7 +2158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _airDeffense: {fileID: 6534297857220710281, guid: 5d6529ea03d1c7c49a702a126ed4f501, type: 3}
-  _electroStation: {fileID: 5620967837023556285, guid: fadbdc45b04a2894097f9f91a43ff4fe, type: 3}
+  _electroStation: {fileID: 6336865885115562195, guid: e3291de8984c0524392df09f7a9a7d50, type: 3}
   _subElectroStations:
   - {fileID: 4055469595693136558, guid: 69bb28c98f9a03845b6687da753ab738, type: 3}
   - {fileID: 5863548482272368747, guid: 92c9cd85abfa3c54c8d53544df2f9da1, type: 3}
@@ -2183,7 +2183,7 @@ MonoBehaviour:
   _builtMode: 1
   _AdminBool: 0
   _timer: {fileID: 1767627851}
-  _currentTime: 30
+  _currentTime: 4
   _electroStations: []
   _subElectroStationList: []
   _airDefenses: []

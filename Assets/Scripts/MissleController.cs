@@ -48,6 +48,7 @@ public class MissleController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (_target.tag != other.tag) return;
         if (other.tag == "Tower")
         {
             _target.GetComponent<ElectroStation>().TakeDamage(_damage);
@@ -56,6 +57,7 @@ public class MissleController : MonoBehaviour
         else if (other.tag == "SubTower")
         {
             _target.GetComponent<SubElectroStation>().TakeDamage(_damage);
+            _target.GetComponent<SubElectroStation>().ElectroStation.GetComponent<ElectroStation>().TakeDamage(_damage);
             Destroy(gameObject);
         }
     }

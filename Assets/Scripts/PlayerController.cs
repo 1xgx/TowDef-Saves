@@ -124,6 +124,7 @@ public class PlayerController : MonoBehaviour
                 NewBuild.GetComponent<SubElectroStation>().indexY = _hexagonGrid[x, y].GetComponent<SixAngelSelection>().IndexY;
                 NewBuild.GetComponent<SubElectroStation>().ElectroStation = _electroStations[0];
                 _gameManager.Towers.Add(NewBuild.GetComponent<Transform>());
+                
             }
             else
             {
