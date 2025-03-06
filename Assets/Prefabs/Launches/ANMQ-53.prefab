@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3557991616629974493}
   - component: {fileID: 5800722040124110719}
   - component: {fileID: 8575307802261945587}
-  - component: {fileID: -1276436257392812787}
   - component: {fileID: 6126648791080149362}
   m_Layer: 0
   m_Name: ANMQ-53
@@ -85,21 +84,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.64, y: 0.43, z: 2.76}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-1276436257392812787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5513951649785449163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0377a82f7a982c343ad9d03ace9ccb7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  indexX: 0
-  indexY: 0
-  healthBar: {fileID: 0}
 --- !u!114 &6126648791080149362
 MonoBehaviour:
   m_ObjectHideFlags: 0

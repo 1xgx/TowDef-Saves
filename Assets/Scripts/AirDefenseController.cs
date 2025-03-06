@@ -23,6 +23,7 @@ public class AirDefenseController : MonoBehaviour
     [Header("Test place")]
     [SerializeField] private bool flag = true;
     [SerializeField] private bool flag2 = false;
+    public List<GameObject> ECS;
     private void Awake()
     {
         _bulletsConst = _bullets;

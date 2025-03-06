@@ -2165,6 +2165,7 @@ MonoBehaviour:
   - {fileID: 3234979770392021156, guid: f2325235b5ef0a949a0d27e41e224c04, type: 3}
   - {fileID: 8815348955066470747, guid: c47c77fc5446c484f95a9732a746d4bd, type: 3}
   _radar: {fileID: 5513951649785449163, guid: 22b4a90dc1f506645a8eeea2d82ac276, type: 3}
+  _ecs: {fileID: 222275183224954390, guid: 99576bcb08cecb64ea7482d136f0d5fe, type: 3}
   _gepard: {fileID: 1383920481807969626, guid: 9bb4d1b4473c6514ca5f377aef083dee, type: 3}
   _mobileGroup: {fileID: 4071253049366143338, guid: 64e296c0892dc4a458ff2c1a20a12abd, type: 3}
   _selectedObject: {fileID: 0}
@@ -2183,13 +2184,14 @@ MonoBehaviour:
   _builtMode: 1
   _AdminBool: 0
   _timer: {fileID: 1767627851}
-  _currentTime: 4
+  _currentTime: 1000
   _electroStations: []
   _subElectroStationList: []
   _airDefenses: []
   _radars: []
   _gepards: []
   _mobileGroups: []
+  _ecss: []
   _stabilizator: {fileID: 1545706742}
   _cameraSpeed: 25
   _choosedObject: {fileID: 0}
@@ -3746,7 +3748,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 393884629467966449, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: '-'
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 393884629467966449, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -3822,7 +3824,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2014631490927646154, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
       propertyPath: m_Name
-      value: TestBattle Menu
+      value: Battle Menu
       objectReference: {fileID: 0}
     - target: {fileID: 2014631490927646154, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
       propertyPath: m_IsActive

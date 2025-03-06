@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject _electroStation;
     [SerializeField] private List<GameObject> _subElectroStations;
     [SerializeField] private GameObject _radar;
+    [SerializeField] private GameObject _ecs;
     [SerializeField] private GameObject _gepard;//Test
     [SerializeField] private GameObject _mobileGroup;//Test
     public GameObject _selectedObject;
@@ -41,9 +42,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private List<GameObject> _electroStations;
     [SerializeField] private List<GameObject> _subElectroStationList;
     [SerializeField] private List<GameObject> _airDefenses;
+    [SerializeField] private List<AirDefenseController> _airDefensesControler;
     [SerializeField] private List<GameObject> _radars;
     [SerializeField] private List<GameObject> _gepards;//Test list
     [SerializeField] private List<GameObject> _mobileGroups;//Test list
+    [SerializeField] private List<GameObject> _ecss;
     [Header("Swipe Detects")]
     [SerializeField] private Transform _stabilizator;
     [SerializeField] private float _cameraSpeed;
@@ -118,6 +121,7 @@ public class PlayerController : MonoBehaviour
             int y = Random.Range(0, _hexagonGrid.GetLength(1));
             if (_hexagonGrid[x,y].tag == "Zone")
             {
+                //If the Zone has one electrostation or another one things. ZOne is busy.
                 GameObject NewBuild = Instantiate(SubElectroStation, new Vector3(_hexagonGrid[x, y].transform.position.x, .1f, _hexagonGrid[x, y].transform.position.z), Quaternion.identity);
                 if (_subElectroStationList.Count <= _subElectroStations.Count) _subElectroStationList.Add(NewBuild);
                 NewBuild.GetComponent<SubElectroStation>().indexX = _hexagonGrid[x, y].GetComponent<SixAngelSelection>().IndexX;
@@ -275,6 +279,7 @@ public class PlayerController : MonoBehaviour
         {
             case "1": _choosedObject = _airDeffense; break;
             case "2": _choosedObject = _radar; break;
+            case "3": _choosedObject = _ecs; break;
             case "TestGepard": _choosedObject = _gepard; break;//Test
             case "TestMGroup": _choosedObject = _mobileGroup; break;//Test
             case "Change": _gameManager.FightIsStarted = true; break;
@@ -300,20 +305,56 @@ public class PlayerController : MonoBehaviour
                     {
                         case "1":
                             if (CheckSelectedObject(_airDefenses, _selectedObject)) return;
-                            _airDefenses.Add(newBuild); _AllReservedCell.Add(newBuild);
+                            
+                            _airDefenses.Add(newBuild); _AllReservedCell.Add(newBuild); _airDefensesControler.Add(newBuild.GetComponent<AirDefenseController>());
                             if (_radars.Count > 0)
                             {
                                 for (int i = 0; i < _radars.Count; i++)
                                 {
                                     Debug.Log(newBuild.name + "");
-                                    _radars[i].GetComponent<RadarDetection>()._airDefenses.Add(newBuild.GetComponent<AirDefenseController>());
+                                    _radars[i].GetComponent<RadarDetection>()._airDefenses = _airDefensesControler;
+                                }
+                            }
+
+                            if (_ecss.Count > 0)
+                            {
+                                for (int i = 0; i < _radars.Count; i++)
+                                {
+                                    _airDefenses[i].GetComponent<AirDefenseController>().ECS = _ecss;
                                 }
                             }
 
                             break;
                         case "2":
                             if (CheckSelectedObject(_radars, _selectedObject)) return;
+                            
                             _radars.Add(newBuild); _AllReservedCell.Add(newBuild);
+                            if (_radars.Count > 0) 
+                            {
+                                for(int i = 0; i <  _radars.Count; i++)
+                                {
+                                    _radars[i].GetComponent<RadarDetection>()._airDefenses = _airDefensesControler;
+                                    if(_ecss.Count > 0) _radars[i].GetComponent<RadarDetection>().ECS = _ecss;
+                                }
+                            }
+                            break;
+                        case "3": 
+                            if(CheckSelectedObject(_ecss, _selectedObject)) return;
+                            _ecss.Add(newBuild); _AllReservedCell.Add(newBuild);
+                            if (_radars.Count > 0) 
+                            {
+                                for(int i = 0; i < _radars.Count; i++)
+                                {
+                                    _radars[i].GetComponent<RadarDetection>().ECS = _ecss;
+                                }
+                            }
+                            if(_airDefenses.Count > 0)
+                            {
+                                for (int i = 0; i < _radars.Count; i++)
+                                {
+                                    _airDefenses[i].GetComponent<AirDefenseController>().ECS = _ecss;
+                                }
+                            }
                             break;
                         case "TestGepard": //Test list
 

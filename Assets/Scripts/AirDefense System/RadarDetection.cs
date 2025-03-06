@@ -7,7 +7,7 @@ public class RadarDetection : MonoBehaviour
     [SerializeField] private Transform _objectTrigger;
     public List<AirDefenseController> _airDefenses;
     [SerializeField] private GameManager _gameManager;
-
+    public List<GameObject> ECS;
     [SerializeField]
     AirDefenseController nearestAirDefense = new AirDefenseController();
 
@@ -23,10 +23,14 @@ public class RadarDetection : MonoBehaviour
     {
         if (other.tag == "Missle")
         {
-            _objectTrigger = other.GetComponent<Transform>();
-            FindNearestAirDefense();
-            Debug.Log(nearestAirDefense.name);
-            nearestAirDefense.GetComponent<AirDefenseController>().Shooting(_objectTrigger);
+            if (ECS.Count > 0)
+            {
+                _objectTrigger = other.GetComponent<Transform>();
+                FindNearestAirDefense();
+                Debug.Log(nearestAirDefense.name);
+                nearestAirDefense.GetComponent<AirDefenseController>().Shooting(_objectTrigger);
+            }
+            
         }
     }
     private void OnTriggerExit(Collider other)

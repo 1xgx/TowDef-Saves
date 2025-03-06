@@ -10,6 +10,7 @@ public class Radar : MonoBehaviour
     public int indexX, indexY;
     public static float _health, _maxHealth = 125.0f;
     [SerializeField] private BuildingHealth healthBar;
+    public List<GameObject> ECS;
     // Start is called before the first frame update
     private void Awake()
     {
