@@ -2184,10 +2184,11 @@ MonoBehaviour:
   _builtMode: 1
   _AdminBool: 0
   _timer: {fileID: 1767627851}
-  _currentTime: 1000
+  _currentTime: 20
   _electroStations: []
   _subElectroStationList: []
   _airDefenses: []
+  _airDefensesControler: []
   _radars: []
   _gepards: []
   _mobileGroups: []

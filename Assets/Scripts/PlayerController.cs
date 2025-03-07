@@ -122,6 +122,10 @@ public class PlayerController : MonoBehaviour
             if (_hexagonGrid[x,y].tag == "Zone")
             {
                 //If the Zone has one electrostation or another one things. ZOne is busy.
+                if (_hexagonGrid[x, y].GetComponent<SixAngelSelection>().ReferenceOfObject != null)
+                {
+                    goto Back;
+                }
                 GameObject NewBuild = Instantiate(SubElectroStation, new Vector3(_hexagonGrid[x, y].transform.position.x, .1f, _hexagonGrid[x, y].transform.position.z), Quaternion.identity);
                 if (_subElectroStationList.Count <= _subElectroStations.Count) _subElectroStationList.Add(NewBuild);
                 NewBuild.GetComponent<SubElectroStation>().indexX = _hexagonGrid[x, y].GetComponent<SixAngelSelection>().IndexX;

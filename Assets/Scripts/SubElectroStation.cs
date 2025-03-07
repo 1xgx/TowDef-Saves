@@ -29,6 +29,8 @@ public class SubElectroStation : MonoBehaviour
     }
     private void Die()
     {
-        Debug.Log("SubElectrostationDied");
+        ElectroStation.GetComponent<ElectroStation>().TakeDamage(25f);
+        Debug.Log("SubElectrostation is Died");
+        Destroy(gameObject);
     }
 }

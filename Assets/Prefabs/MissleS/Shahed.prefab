@@ -234,7 +234,7 @@ Transform:
   m_GameObject: {fileID: 3203767916346408953}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.238886, y: -0.096, z: -3.14}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -281,6 +281,7 @@ MonoBehaviour:
   _target: {fileID: 0}
   _missleCellContoroller: {fileID: 0}
   _missleLineContoroller: {fileID: 0}
+  _gameManager: {fileID: 0}
   missleType: cell
 --- !u!114 &3027795345576599982
 MonoBehaviour:
