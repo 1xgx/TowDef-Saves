@@ -22,7 +22,8 @@ public class Missle : MonoBehaviour
         if (_target == null && _gameManager != null) _target = _gameManager.randomElectroStationForMissle();
         switch (missleType)
         {
-            case "cell": 
+            case "cell":
+                if (_target == null) _target = _gameManager.randomElectroStationForMissle();
                 if (_target.GetComponent<ElectroStation>()) 
                 {
                     Debug.Log($"{_target.GetComponent<ElectroStation>().indexX}");
@@ -35,7 +36,8 @@ public class Missle : MonoBehaviour
                 }
                 break;
 
-            case "line": _missleLineContoroller.getTargetObject(_target); break;
+            case "line": if (_target == null) _target = _gameManager.randomElectroStationForMissle();
+                _missleLineContoroller.getTargetObject(_target); break;
         }
 
     }

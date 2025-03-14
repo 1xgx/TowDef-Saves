@@ -47,6 +47,27 @@ public class MissleCellController : MonoBehaviour
 
         transform.position = new Vector3(transform.position.x, transform.position.y + .1f, transform.position.z);
     }
+    private void FixedUpdate()
+    {
+        AvailabilityOfTargetCheck();
+    }
+    private void AvailabilityOfTargetCheck()
+    {
+        if (_target == null)
+        {
+            _steps = 1;
+            GameManager tmpGameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+            tmpGameManager.randomElectroStationForMissle();
+            if (_target.GetComponent<ElectroStation>())
+            {
+                getTargetObject(_target.GetComponent<ElectroStation>().indexX, _target.GetComponent<ElectroStation>().indexY, _target);
+            }
+            if (_target.GetComponent<SubElectroStation>())
+            {
+                getTargetObject(_target.GetComponent<SubElectroStation>().indexX, _target.GetComponent<SubElectroStation>().indexY, _target);
+            }
+        }
+    }
     private void GetObjectWay(int[,] grid, (int,int) start, (int, int) goal)
     {
         List<(int, int)> path = AStar.FindPath(grid, start, goal);
@@ -119,14 +140,13 @@ public class MissleCellController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         
-        if (other.tag == "Tower" || other.tag == "SubTower" && _target.tag != other.tag) return;
-        if (other.tag == "Tower")
+        if (other.tag == "Tower" && other.tag == _target.tag)
         {
 
             _target.GetComponent<ElectroStation>().TakeDamage(_damage);
             Destroy(gameObject);
         }
-        else if (other.tag == "SubTower")
+        else if (other.tag == "SubTower" && other.tag == _target.tag)
         {
             _target.GetComponent<SubElectroStation>().TakeDamage(_damage);
             Destroy(gameObject);

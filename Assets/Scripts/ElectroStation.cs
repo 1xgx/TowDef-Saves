@@ -23,7 +23,15 @@ public class ElectroStation : MonoBehaviour
         healthBar.UpdateHealthBar(_health, _maxHealth);
         if (_health <= 0)
         {
-            Die();
+            GameManager tmpGameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+            for(int i = 0; i < tmpGameManager.Towers.Count; i++)
+            {
+                if(gameObject == tmpGameManager.Towers[i])
+                {
+                    tmpGameManager.Towers.RemoveAt(i);
+                    Die();
+                }
+            }
         }
     }
     private void Die() 
