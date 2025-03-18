@@ -1646,6 +1646,7 @@ MonoBehaviour:
   _timeOfBattle: 120
   _wavesOfBattle: 3
   _timer: {fileID: 1767627851}
+  LevelPanel: {fileID: 956637653}
 --- !u!114 &614329855
 MonoBehaviour:
   m_ObjectHideFlags: 0
