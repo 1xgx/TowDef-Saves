@@ -8,12 +8,15 @@ public class MissleSpawner : MonoBehaviour
     [SerializeField] private float _delay = 3.0f;
     [SerializeField] private GridCell _gridCell;
     public List<string> _missleType;
-    public void spawnStart()
+    [SerializeField] private GameManager _gameManager;
+    public void spawnStart(GameManager gameManager)
     {
+        _gameManager = gameManager;
         InvokeRepeating(nameof(missleGenerate), _delay, _delay);
     }
     private void missleGenerate()
     {
+        if(_gameManager.FightIsStarted == false) return;
         int randomIndex = Random.Range(0, _misslePrefab.Length);
         int randomTypeMissle = Random.Range(0, _missleType.Count);
         string typeOfMissle = _misslePrefab[randomIndex].GetComponent<Missle>().missleType;

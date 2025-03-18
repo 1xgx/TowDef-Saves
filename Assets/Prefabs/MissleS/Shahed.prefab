@@ -297,7 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 1
   _target: {fileID: 0}
-  _damage: 25
+  _damage: 1
   _gridCell: {fileID: 0}
   _steps: 1
   _canMove: 0

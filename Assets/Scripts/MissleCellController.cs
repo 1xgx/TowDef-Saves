@@ -127,7 +127,8 @@ public class MissleCellController : MonoBehaviour
     }
     private void Update()
     {
-        if(_canMove) ObjectMove();
+        AvailabilityOfTargetCheck();
+        if (_canMove) ObjectMove();
         //getObjectPosition();
     }
     public void getTargetObject(int X, int Y, Transform target)

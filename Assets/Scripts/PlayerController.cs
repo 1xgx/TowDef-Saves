@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
     {
         SpawnElectroStation();
         SpawnSubElectroStation();
-        StartCoroutine(Timer());
+        //StartCoroutine(Timer());
     }
     IEnumerator Timer()
     {

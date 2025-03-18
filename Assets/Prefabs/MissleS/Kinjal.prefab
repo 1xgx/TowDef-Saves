@@ -74,7 +74,7 @@ MonoBehaviour:
   _health: 0
   _maxHealth: 25
   _speed: 10
-  _damage: 50
+  _damage: 1
   healthBar: {fileID: 0}
 --- !u!114 &-3758730636256882492
 MonoBehaviour:
@@ -91,6 +91,7 @@ MonoBehaviour:
   _target: {fileID: 0}
   _missleCellContoroller: {fileID: 0}
   _missleLineContoroller: {fileID: 0}
+  _gameManager: {fileID: 0}
   missleType: line
 --- !u!54 &-898874150988948812
 Rigidbody:
