@@ -18,15 +18,16 @@ public class GameManager : MonoBehaviour
     public string SelectedObject = "0";
     [SerializeField] private PlayerController _player;
     public List<Transform> Towers;
+    [SerializeField] private float _delayLevelStart = 3.0f;
     [SerializeField] private float _delayBeforeStart = 15.0f;
     [SerializeField] private float _timeOfBattle = 120.0f;
-    [SerializeField] private int _wavesOfBattle = 3;
+    [SerializeField] private int _wavesOfBattle = 1;
     [SerializeField] private TextMeshProUGUI _timer;
     [SerializeField] private GameObject LevelPanel;
     
     private void Start()
     {
-        Invoke(nameof(StartLevel), 3.0f);
+        Invoke(nameof(StartLevel), _delayLevelStart);
     }
     private void StartLevel()
     {
@@ -47,14 +48,14 @@ public class GameManager : MonoBehaviour
     public void startPlayerGame()
     {
         FightIsStarted = true;
-        _missleSpawner.spawnStart(gameObject.GetComponent<GameManager>());
+        _missleSpawner.spawnStart(gameObject.GetComponent<GameManager>(), _wavesOfBattle);
         
         _towerButton.SetActive(false);
     }
     private void NextWave()
     {
-        _wavesOfBattle--;
-        if (_wavesOfBattle > 0) StartCoroutine(startWave(_delayBeforeStart));
+        _wavesOfBattle++;
+        if (_wavesOfBattle < 4) StartCoroutine(startWave(_delayBeforeStart));
         else return;
     }
     public void StopWave()
@@ -99,12 +100,13 @@ public class GameManager : MonoBehaviour
         delay = 0;
         UpdateDisplayTimer(delay);
         StartCoroutine(Battle(_timeOfBattle));
+        StopCoroutine(startWave(0.0f));
         
     }
     private void UpdateDisplayTimer(float CurrentTime)
     {
         if (CurrentTime == 0) startPlayerGame();
-        _timer.text = "Time: " + CurrentTime + "S";
+        _timer.text = "" + CurrentTime + " 00";
     }
     private IEnumerator Battle(float time)
     {
@@ -117,6 +119,7 @@ public class GameManager : MonoBehaviour
         time = 0;
         _timer.text = "Time: " + time + "S";
         if (time == 0) StopWave();
+        StopCoroutine(Battle(0.0f));
     }
     
 }

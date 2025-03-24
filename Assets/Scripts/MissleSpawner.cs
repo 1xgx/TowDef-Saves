@@ -1,18 +1,41 @@
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class MissleSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] _misslePrefab;
-    [SerializeField] private float _delay = 3.0f;
+    [SerializeField] private float _delay = 10.0f;
     [SerializeField] private GridCell _gridCell;
     public List<string> _missleType;
     [SerializeField] private GameManager _gameManager;
-    public void spawnStart(GameManager gameManager)
+    public void spawnStart(GameManager gameManager, float speedOfInstantiate)
     {
+        float Delay = _delay / speedOfInstantiate;
+        int Missle_Count = 120 / System.Convert.ToInt32(Delay);
         _gameManager = gameManager;
-        InvokeRepeating(nameof(missleGenerate), _delay, _delay);
+        //InvokeRepeating(nameof(missleGenerate), Delay, Delay);
+        StartCoroutine(QueueOfMissle(Delay, Missle_Count));
+    }
+    private void OnEnable()
+    {
+
+    }
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+    private IEnumerator QueueOfMissle(float delay, int Missle_Count)
+    {
+        while (Missle_Count > 0)
+        {
+            yield return new WaitForSeconds(delay);
+            missleGenerate();
+            Missle_Count--;
+        }
+        
     }
     private void missleGenerate()
     {
