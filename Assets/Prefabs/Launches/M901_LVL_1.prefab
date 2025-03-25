@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 7740830741191487144}
   - component: {fileID: 3006078344796435337}
   - component: {fileID: 3661035885748513005}
+  - component: {fileID: 5059545713481155917}
   m_Layer: 0
   m_Name: M901_LVL_1
   m_TagString: Untagged
@@ -133,10 +134,23 @@ MonoBehaviour:
   _missleSpawned: {fileID: 0}
   _misslesSpawned: []
   _bullets: 5
-  _refBullet: {fileID: 2500770461063602522, guid: 71a9293939d0a8542b74503726dd2e49, type: 3}
+  _refBullet: {fileID: 8008616138855683407, guid: b9b2790ac47de6744b88551921da2791, type: 3}
   flag: 1
   flag2: 0
   ECS: []
+--- !u!114 &5059545713481155917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6534297857220710281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a35524aae1ad34468c4f2e841f259c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: 25
 --- !u!1001 &4235922631625709861
 PrefabInstance:
   m_ObjectHideFlags: 0

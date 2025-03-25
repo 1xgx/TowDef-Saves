@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class Missle : MonoBehaviour
 {
+    [SerializeField] private float _health;
+    [SerializeField] private float _maxHealth;
+    [SerializeField] private BuildingHealth healthBar;
     [SerializeField] private Transform _target;
     [SerializeField] private MissleCellController _missleCellContoroller;
     [SerializeField] private MissleController _missleLineContoroller;
     [SerializeField] private GameManager _gameManager;
+    [SerializeField] private int _costOfDestroy = 25;
     [Tooltip("Type of missle")]
     public string missleType;
     private void Start()
     {
-        if(missleType == "cell") _missleCellContoroller = GetComponent<MissleCellController>();
+        _health = _maxHealth;
+        if (missleType == "cell") _missleCellContoroller = GetComponent<MissleCellController>();
         if(missleType == "line") _missleLineContoroller = GetComponent<MissleController>();
 
     }
@@ -40,5 +45,15 @@ public class Missle : MonoBehaviour
                 _missleLineContoroller.getTargetObject(_target); break;
         }
 
+    }
+    public void TakeDamage(float damageAmount)
+    {
+        _health -= damageAmount;
+        if(healthBar != null)healthBar.UpdateHealthBar(_health, _maxHealth);
+        if (_health <= 0)
+        {
+            _gameManager.sendMoney(_costOfDestroy);
+            Destroy(gameObject);
+        }
     }
 }

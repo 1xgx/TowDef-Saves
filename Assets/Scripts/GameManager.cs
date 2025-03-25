@@ -52,11 +52,17 @@ public class GameManager : MonoBehaviour
         
         _towerButton.SetActive(false);
     }
+    public void sendMoney(int value)
+    {
+        _playerContorler._money += value;
+        _playerContorler.UpdateMoney();
+    }
     private void NextWave()
     {
         _wavesOfBattle++;
         if (_wavesOfBattle < 4) StartCoroutine(startWave(_delayBeforeStart));
         else return;
+        _playerContorler.enabled = true;
     }
     public void StopWave()
     {
@@ -106,7 +112,7 @@ public class GameManager : MonoBehaviour
     private void UpdateDisplayTimer(float CurrentTime)
     {
         if (CurrentTime == 0) startPlayerGame();
-        _timer.text = "" + CurrentTime + " 00";
+        _timer.text = "" + CurrentTime + "";
     }
     private IEnumerator Battle(float time)
     {
@@ -117,7 +123,7 @@ public class GameManager : MonoBehaviour
             time--;
         }
         time = 0;
-        _timer.text = "Time: " + time + "S";
+        _timer.text = "" + time + "";
         if (time == 0) StopWave();
         StopCoroutine(Battle(0.0f));
     }

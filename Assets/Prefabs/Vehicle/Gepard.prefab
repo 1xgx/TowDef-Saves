@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1444256074647342873}
   - component: {fileID: 5685005785474470695}
   - component: {fileID: -8975989595663028402}
+  - component: {fileID: -5489527229916072146}
   m_Layer: 0
   m_Name: Gepard
   m_TagString: Military_Object
@@ -117,6 +118,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &-5489527229916072146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383920481807969626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a35524aae1ad34468c4f2e841f259c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: 25
 --- !u!1 &7394133062915487770
 GameObject:
   m_ObjectHideFlags: 0

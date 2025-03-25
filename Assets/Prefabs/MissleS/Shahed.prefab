@@ -278,6 +278,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c65226a7be84543b36f8f17d1e9ad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _health: 0
+  _maxHealth: 100
+  healthBar: {fileID: 1351837644753130574}
   _target: {fileID: 0}
   _missleCellContoroller: {fileID: 0}
   _missleLineContoroller: {fileID: 0}

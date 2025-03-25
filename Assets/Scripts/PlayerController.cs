@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject _geoPointRef;
     [SerializeField] private GameObject _cells;
     [SerializeField] private GameObject[,] _hexagonGrid;
+    public int _money = 100;
+    [SerializeField] private TextMeshProUGUI _textOfMoney;
     [Header("Tools")]
     [SerializeField] private string[] _nameZone;
     [SerializeField] private GameManager _gameManager;
@@ -70,6 +72,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
+        UpdateMoney();
         SpawnElectroStation();
         SpawnSubElectroStation();
         //StartCoroutine(Timer());
@@ -149,6 +152,10 @@ public class PlayerController : MonoBehaviour
         _controls.Disable();
     }
    
+    public void UpdateMoney()
+    {
+        _textOfMoney.text = "" + _money;
+    }
     private void Update()
     {
         _controls.Touch.TouchPress.started += _ => SwipeStart();
@@ -300,90 +307,100 @@ public class PlayerController : MonoBehaviour
             }
             if (_choosedObject != null)
             {
-                GameObject newBuild = Instantiate(_choosedObject, towerOffset, Quaternion.identity);
-                _selectedObject.GetComponent<SixAngelSelection>().ReferenceOfObject = newBuild;
-
-                if (_builtMode == true)
+                if (_choosedObject.GetComponent<UnitCost>().cost <= _money)
                 {
-                    switch (_gameManager.SelectedObject)
+                    GameObject newBuild = Instantiate(_choosedObject, towerOffset, Quaternion.identity);
+                    _selectedObject.GetComponent<SixAngelSelection>().ReferenceOfObject = newBuild;
+                    _money -= newBuild.GetComponent<UnitCost>().cost;
+                    UpdateMoney();
+                    if (_builtMode == true)
                     {
-                        case "1":
-                            if (CheckSelectedObject(_airDefenses, _selectedObject)) return;
-                            
-                            _airDefenses.Add(newBuild); _AllReservedCell.Add(newBuild); _airDefensesControler.Add(newBuild.GetComponent<AirDefenseController>());
-                            if (_radars.Count > 0)
-                            {
-                                for (int i = 0; i < _radars.Count; i++)
-                                {
-                                    Debug.Log(newBuild.name + "");
-                                    _radars[i].GetComponent<RadarDetection>()._airDefenses = _airDefensesControler;
-                                }
-                            }
 
-                            if (_ecss.Count > 0)
-                            {
-                                for (int i = 0; i < _radars.Count; i++)
-                                {
-                                    _airDefenses[i].GetComponent<AirDefenseController>().ECS = _ecss;
-                                }
-                            }
+                        switch (_gameManager.SelectedObject)
+                        {
+                            case "1":
+                                if (CheckSelectedObject(_airDefenses, _selectedObject)) return;
 
-                            break;
-                        case "2":
-                            if (CheckSelectedObject(_radars, _selectedObject)) return;
-                            
-                            _radars.Add(newBuild); _AllReservedCell.Add(newBuild);
-                            if (_radars.Count > 0) 
-                            {
-                                for(int i = 0; i <  _radars.Count; i++)
+                                _airDefenses.Add(newBuild); _AllReservedCell.Add(newBuild); _airDefensesControler.Add(newBuild.GetComponent<AirDefenseController>());
+                                if (_radars.Count > 0)
                                 {
-                                    _radars[i].GetComponent<RadarDetection>()._airDefenses = _airDefensesControler;
-                                    if(_ecss.Count > 0) _radars[i].GetComponent<RadarDetection>().ECS = _ecss;
+                                    for (int i = 0; i < _radars.Count; i++)
+                                    {
+                                        Debug.Log(newBuild.name + "");
+                                        _radars[i].GetComponent<RadarDetection>()._airDefenses = _airDefensesControler;
+                                    }
                                 }
-                            }
-                            break;
-                        case "3": 
-                            if(CheckSelectedObject(_ecss, _selectedObject)) return;
-                            _ecss.Add(newBuild); _AllReservedCell.Add(newBuild);
-                            if (_radars.Count > 0) 
-                            {
-                                for(int i = 0; i < _radars.Count; i++)
-                                {
-                                    _radars[i].GetComponent<RadarDetection>().ECS = _ecss;
-                                }
-                            }
-                            if(_airDefenses.Count > 0)
-                            {
-                                for (int i = 0; i < _radars.Count; i++)
-                                {
-                                    _airDefenses[i].GetComponent<AirDefenseController>().ECS = _ecss;
-                                }
-                            }
-                            break;
-                        case "TestGepard": //Test list
 
-                            newBuild.GetComponent<VehicleCellMovement>().VehiclePosition.Item1 = _selectedObject.GetComponent<SixAngelSelection>().IndexX;
-                            newBuild.GetComponent<VehicleCellMovement>().VehiclePosition.Item2 = _selectedObject.GetComponent<SixAngelSelection>().IndexY;
-                            newBuild.GetComponent<VehicleCellMovement>().IndexX = _selectedObject.GetComponent<SixAngelSelection>().IndexX;
-                            newBuild.GetComponent<VehicleCellMovement>().IndexY = _selectedObject.GetComponent<SixAngelSelection>().IndexY;
-                            newBuild.GetComponent<VehicleCellMovement>().Spawn();
-                            _tmpCellSelectedObject = _selectedObject;
-                            _AllReservedCell.Add(newBuild);
-                            _mobileGroups.Add(newBuild);
-                            break;
-                        case "TestMGroup":
-                            newBuild.GetComponent<VehicleCellMovement>().VehiclePosition.Item1 = _selectedObject.GetComponent<SixAngelSelection>().IndexX;
-                            newBuild.GetComponent<VehicleCellMovement>().VehiclePosition.Item2 = _selectedObject.GetComponent<SixAngelSelection>().IndexY;
-                            newBuild.GetComponent<VehicleCellMovement>().IndexX = _selectedObject.GetComponent<SixAngelSelection>().IndexX;
-                            newBuild.GetComponent<VehicleCellMovement>().IndexY = _selectedObject.GetComponent<SixAngelSelection>().IndexY;
-                            newBuild.GetComponent<VehicleCellMovement>().Spawn();
-                            _tmpCellSelectedObject = _selectedObject;
-                            _AllReservedCell.Add(newBuild);
-                            _mobileGroups.Add(newBuild);
-                            break;
+                                if (_ecss.Count > 0)
+                                {
+                                    for (int i = 0; i < _radars.Count; i++)
+                                    {
+                                        _airDefenses[i].GetComponent<AirDefenseController>().ECS = _ecss;
+                                    }
+                                }
+
+                                break;
+                            case "2":
+                                if (CheckSelectedObject(_radars, _selectedObject)) return;
+
+                                _radars.Add(newBuild); _AllReservedCell.Add(newBuild);
+                                if (_radars.Count > 0)
+                                {
+                                    for (int i = 0; i < _radars.Count; i++)
+                                    {
+                                        _radars[i].GetComponent<RadarDetection>()._airDefenses = _airDefensesControler;
+                                        if (_ecss.Count > 0) _radars[i].GetComponent<RadarDetection>().ECS = _ecss;
+                                    }
+                                }
+                                break;
+                            case "3":
+                                if (CheckSelectedObject(_ecss, _selectedObject)) return;
+                                _ecss.Add(newBuild); _AllReservedCell.Add(newBuild);
+                                if (_radars.Count > 0)
+                                {
+                                    for (int i = 0; i < _radars.Count; i++)
+                                    {
+                                        _radars[i].GetComponent<RadarDetection>().ECS = _ecss;
+                                    }
+                                }
+                                if (_airDefenses.Count > 0)
+                                {
+                                    for (int i = 0; i < _radars.Count; i++)
+                                    {
+                                        _airDefenses[i].GetComponent<AirDefenseController>().ECS = _ecss;
+                                    }
+                                }
+                                break;
+                            case "TestGepard": //Test list
+
+                                newBuild.GetComponent<VehicleCellMovement>().VehiclePosition.Item1 = _selectedObject.GetComponent<SixAngelSelection>().IndexX;
+                                newBuild.GetComponent<VehicleCellMovement>().VehiclePosition.Item2 = _selectedObject.GetComponent<SixAngelSelection>().IndexY;
+                                newBuild.GetComponent<VehicleCellMovement>().IndexX = _selectedObject.GetComponent<SixAngelSelection>().IndexX;
+                                newBuild.GetComponent<VehicleCellMovement>().IndexY = _selectedObject.GetComponent<SixAngelSelection>().IndexY;
+                                newBuild.GetComponent<VehicleCellMovement>().Spawn();
+                                _tmpCellSelectedObject = _selectedObject;
+                                _AllReservedCell.Add(newBuild);
+                                _mobileGroups.Add(newBuild);
+                                break;
+                            case "TestMGroup":
+                                newBuild.GetComponent<VehicleCellMovement>().VehiclePosition.Item1 = _selectedObject.GetComponent<SixAngelSelection>().IndexX;
+                                newBuild.GetComponent<VehicleCellMovement>().VehiclePosition.Item2 = _selectedObject.GetComponent<SixAngelSelection>().IndexY;
+                                newBuild.GetComponent<VehicleCellMovement>().IndexX = _selectedObject.GetComponent<SixAngelSelection>().IndexX;
+                                newBuild.GetComponent<VehicleCellMovement>().IndexY = _selectedObject.GetComponent<SixAngelSelection>().IndexY;
+                                newBuild.GetComponent<VehicleCellMovement>().Spawn();
+                                _tmpCellSelectedObject = _selectedObject;
+                                _AllReservedCell.Add(newBuild);
+                                _mobileGroups.Add(newBuild);
+                                break;
+                        }
+                        message = " ";
+                        _choosedObject = null;
                     }
-                    message = " ";
-                    _choosedObject = null;
+                }
+                else
+                {
+                    _selectedObject = null;
+                    return;
                 }
             }
         }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5800722040124110719}
   - component: {fileID: 8575307802261945587}
   - component: {fileID: 6126648791080149362}
+  - component: {fileID: -7106678858634993492}
   m_Layer: 0
   m_Name: ANMQ-53
   m_TagString: Untagged
@@ -99,7 +100,21 @@ MonoBehaviour:
   _objectTrigger: {fileID: 0}
   _airDefenses: []
   _gameManager: {fileID: 0}
+  ECS: []
   nearestAirDefense: {fileID: 0}
+--- !u!114 &-7106678858634993492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5513951649785449163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a35524aae1ad34468c4f2e841f259c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: 25
 --- !u!1 &8945572800336890554
 GameObject:
   m_ObjectHideFlags: 0

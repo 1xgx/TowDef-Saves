@@ -32,15 +32,7 @@ public class MissleController : MonoBehaviour
         transform.position += MoveDirection * _speed * Time.deltaTime;
     }
     
-    public void TakeDamage(float damageAmount)
-    {
-        _health -= damageAmount;
-        healthBar.UpdateHealthBar(_health, _maxHealth);
-        if (_health <= 0)
-        {
-            Die();
-        }
-    }
+    
     private void Die()
     {
         Destroy(gameObject);

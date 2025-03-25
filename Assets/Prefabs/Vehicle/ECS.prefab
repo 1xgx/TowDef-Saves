@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 4457406909210036558}
   - component: {fileID: 2025806657409631056}
   - component: {fileID: -5361066638865722107}
+  - component: {fileID: -6239375919267996040}
   m_Layer: 0
   m_Name: ECS
   m_TagString: Untagged
@@ -145,6 +146,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   indexX: 0
   indexY: 0
+  healthBar: {fileID: 0}
+--- !u!114 &-6239375919267996040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222275183224954390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a35524aae1ad34468c4f2e841f259c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: 25
 --- !u!1 &1320214015974855394
 GameObject:
   m_ObjectHideFlags: 0
