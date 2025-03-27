@@ -60,7 +60,7 @@ public partial class @TouchControlls: IInputActionCollection2, IDisposable
                     ""id"": ""f47428ce-abf8-44fe-84ec-f3e995ec6350"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(pressPoint=2)"",
                     ""initialStateCheck"": true
                 },
                 {

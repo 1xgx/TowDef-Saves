@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -19,12 +20,21 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerController _player;
     public List<Transform> Towers;
     [SerializeField] private float _delayLevelStart = 3.0f;
-    [SerializeField] private float _delayBeforeStart = 15.0f;
-    [SerializeField] private float _timeOfBattle = 120.0f;
-    [SerializeField] private int _wavesOfBattle = 1;
+    [SerializeField] private float _breakDuration = 15.0f;
+    [SerializeField] private float _waveDuration = 10.0f;
+    [SerializeField] private int _currentWave = 1;
     [SerializeField] private TextMeshProUGUI _timer;
     [SerializeField] private GameObject LevelPanel;
     
+
+    [Header("Day and Night cycle")]
+    [SerializeField] private Light _directionalLight;
+    [SerializeField] private Material _skyBoxNight;
+    [SerializeField] private Material _skyBoxDay;
+    [SerializeField] private Color _dayColor = Color.white;
+    [SerializeField] private Color _nightColor = new Color(0.1f,0.1f,0.2f);
+    [SerializeField] private float _transitionDuration = 3.0f;
+
     private void Start()
     {
         Invoke(nameof(StartLevel), _delayLevelStart);
@@ -32,7 +42,7 @@ public class GameManager : MonoBehaviour
     private void StartLevel()
     {
         Destroy(LevelPanel);
-        StartCoroutine(startWave(_delayBeforeStart));
+        StartCoroutine(startWave(_breakDuration));
     }
     public void restartGame()
     {
@@ -48,7 +58,7 @@ public class GameManager : MonoBehaviour
     public void startPlayerGame()
     {
         FightIsStarted = true;
-        _missleSpawner.spawnStart(gameObject.GetComponent<GameManager>(), _wavesOfBattle);
+        _missleSpawner.spawnStart(gameObject.GetComponent<GameManager>(), _currentWave);
         
         _towerButton.SetActive(false);
     }
@@ -59,9 +69,11 @@ public class GameManager : MonoBehaviour
     }
     private void NextWave()
     {
-        _wavesOfBattle++;
-        if (_wavesOfBattle < 4) StartCoroutine(startWave(_delayBeforeStart));
+        _currentWave++;
+        if (_currentWave < 4) StartCoroutine(startWave(_breakDuration));
         else return;
+        if (_currentWave == 2) ChangeToNight();
+        if (_currentWave == 3) ChangeToDay();
         _playerContorler.enabled = true;
     }
     public void StopWave()
@@ -105,7 +117,7 @@ public class GameManager : MonoBehaviour
         }
         delay = 0;
         UpdateDisplayTimer(delay);
-        StartCoroutine(Battle(_timeOfBattle));
+        StartCoroutine(Battle(_waveDuration));
         StopCoroutine(startWave(0.0f));
         
     }
@@ -127,5 +139,62 @@ public class GameManager : MonoBehaviour
         if (time == 0) StopWave();
         StopCoroutine(Battle(0.0f));
     }
-    
+    private void ChangeToNight()
+    {
+        //Changing since Day to Night
+        StartCoroutine(TransitionToNight());
+    }
+    private void ChangeToDay()
+    {
+        StartCoroutine(TransitionToDay());
+    }
+    IEnumerator TransitionToNight()
+    {
+        float t = 0f;
+
+        // Save the current parametrs of light
+        Color initialColor = _directionalLight.color;
+        float initialIntensity = _directionalLight.intensity;
+
+        // Step by step change the light and sky box to night
+        while (t < 1f)
+        {
+            t += Time.deltaTime / _transitionDuration;
+            _directionalLight.color = Color.Lerp(initialColor, _nightColor, t);
+            _directionalLight.intensity = Mathf.Lerp(initialIntensity, 0.2f, t);
+            UnityEngine.RenderSettings.skybox.Lerp(_skyBoxDay, _skyBoxNight, t);
+
+            yield return null;
+        }
+
+        // Set-up final results
+        _directionalLight.color = _nightColor;
+        _directionalLight.intensity = 0.2f;
+        UnityEngine.RenderSettings.skybox = _skyBoxNight;
+    }
+    IEnumerator TransitionToDay()
+    {
+        float t = 0f;
+
+        // Save the current parametrs of light
+        Color initialColor = _directionalLight.color;
+        float initialIntensity = _directionalLight.intensity;
+
+        // Step by step change the light and sky box to night
+        while (t < 1f)
+        {
+            t += Time.deltaTime / _transitionDuration;
+            _directionalLight.color = Color.Lerp(initialColor, _dayColor, t);
+            _directionalLight.intensity = Mathf.Lerp(initialIntensity, 1f, t);
+            UnityEngine.RenderSettings.skybox.Lerp(_skyBoxNight, _skyBoxDay, t);
+
+            yield return null;
+        }
+
+        // Set-up final results
+        _directionalLight.color = _dayColor;
+        _directionalLight.intensity = 1f;
+        UnityEngine.RenderSettings.skybox = _skyBoxDay;
+    }
+
 }

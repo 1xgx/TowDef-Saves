@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 01f4eb1c73693428d923f1520032e7f9, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.48278856, g: 0.52762324, b: 0.5972531, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1930,11 +1930,17 @@ MonoBehaviour:
   _player: {fileID: 899244618}
   Towers: []
   _delayLevelStart: 1
-  _delayBeforeStart: 15
-  _timeOfBattle: 120
-  _wavesOfBattle: 1
+  _breakDuration: 15
+  _waveDuration: 120
+  _currentWave: 1
   _timer: {fileID: 1767627851}
   LevelPanel: {fileID: 956637653}
+  _directionalLight: {fileID: 705507994}
+  _skyBoxNight: {fileID: 2100000, guid: eac2ef371405749e0bd050b4c3272f16, type: 2}
+  _skyBoxDay: {fileID: 2100000, guid: 01f4eb1c73693428d923f1520032e7f9, type: 2}
+  _dayColor: {r: 1, g: 1, b: 1, a: 1}
+  _nightColor: {r: 0.1, g: 0.1, b: 0.2, a: 1}
+  _transitionDuration: 3
 --- !u!114 &614329855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2173,7 +2179,7 @@ Transform:
   m_GameObject: {fileID: 705507993}
   serializedVersion: 2
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 7.46, y: 3, z: -10.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2566,7 +2572,7 @@ MonoBehaviour:
   _mobileGroups: []
   _ecss: []
   _stabilizator: {fileID: 1545706742}
-  _cameraSpeed: 25
+  _cameraSpeed: 5
   _choosedObject: {fileID: 0}
   _battleMenu: {fileID: 440585871}
   _subButttleMenu: {fileID: 212992939}
