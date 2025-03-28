@@ -1941,6 +1941,8 @@ MonoBehaviour:
   _dayColor: {r: 1, g: 1, b: 1, a: 1}
   _nightColor: {r: 0.1, g: 0.1, b: 0.2, a: 1}
   _transitionDuration: 3
+  NightLights: []
+  NightTime: 0
 --- !u!114 &614329855
 MonoBehaviour:
   m_ObjectHideFlags: 0

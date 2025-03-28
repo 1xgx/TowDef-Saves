@@ -338,7 +338,7 @@ public class PlayerController : MonoBehaviour
                                         _airDefenses[i].GetComponent<AirDefenseController>().ECS = _ecss;
                                     }
                                 }
-
+                                
                                 break;
                             case "2":
                                 if (CheckSelectedObject(_radars, _selectedObject)) return;
@@ -393,6 +393,7 @@ public class PlayerController : MonoBehaviour
                                 _mobileGroups.Add(newBuild);
                                 break;
                         }
+                        _gameManager.NightLights.Add(newBuild.GetComponent<NightLight>());
                         message = " ";
                         _choosedObject = null;
                     }

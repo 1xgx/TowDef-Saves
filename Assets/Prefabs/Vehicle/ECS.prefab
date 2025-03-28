@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 2025806657409631056}
   - component: {fileID: -5361066638865722107}
   - component: {fileID: -6239375919267996040}
+  - component: {fileID: -3340567514082332815}
   m_Layer: 0
   m_Name: ECS
   m_TagString: Untagged
@@ -161,6 +162,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 25
+--- !u!114 &-3340567514082332815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222275183224954390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 722669c3124d4bd43bca7854ce8c4ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pointLight: {fileID: 7600729015992000275}
 --- !u!1 &1320214015974855394
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,7 +432,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6890944754061691817
 Transform:
   m_ObjectHideFlags: 0

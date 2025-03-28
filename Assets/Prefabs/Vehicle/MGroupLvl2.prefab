@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7482832383421462912
 Transform:
   m_ObjectHideFlags: 0
@@ -106,6 +106,8 @@ GameObject:
   - component: {fileID: 99016022609021371}
   - component: {fileID: 7281656792756820632}
   - component: {fileID: -5833297007298654016}
+  - component: {fileID: -914428604565249858}
+  - component: {fileID: 4110706050362840830}
   m_Layer: 0
   m_Name: MGroupLvl2
   m_TagString: Untagged
@@ -211,6 +213,32 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &-914428604565249858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1460666385099887013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 722669c3124d4bd43bca7854ce8c4ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pointLight: {fileID: 298168258908061652}
+--- !u!114 &4110706050362840830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1460666385099887013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a35524aae1ad34468c4f2e841f259c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: 25
 --- !u!1001 &8111369480013086963
 PrefabInstance:
   m_ObjectHideFlags: 0

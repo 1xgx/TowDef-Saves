@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Missle : MonoBehaviour
@@ -12,6 +13,7 @@ public class Missle : MonoBehaviour
     [SerializeField] private MissleController _missleLineContoroller;
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private int _costOfDestroy = 25;
+    
     [Tooltip("Type of missle")]
     public string missleType;
     private void Start()

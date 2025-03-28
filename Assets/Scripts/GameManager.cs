@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.SceneManagement;
@@ -34,6 +35,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Color _dayColor = Color.white;
     [SerializeField] private Color _nightColor = new Color(0.1f,0.1f,0.2f);
     [SerializeField] private float _transitionDuration = 3.0f;
+    public List<NightLight> NightLights;
+    [SerializeField] private bool NightTime = false;
 
     private void Start()
     {
@@ -150,6 +153,11 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator TransitionToNight()
     {
+        NightTime = true;
+        for (int i = 0; i < NightLights.Count; i++)
+        {
+            NightLights[i].Night(NightTime);
+        }
         float t = 0f;
 
         // Save the current parametrs of light
@@ -174,6 +182,11 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator TransitionToDay()
     {
+        NightTime = false;
+        for(int i = 0; i<NightLights.Count; i++)
+        {
+            NightLights[i].Night(NightTime);
+        }
         float t = 0f;
 
         // Save the current parametrs of light
