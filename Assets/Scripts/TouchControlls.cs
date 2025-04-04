@@ -96,6 +96,17 @@ public partial class @TouchControlls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""be759927-d9be-4487-a09e-e3bfd2024f2a"",
+                    ""path"": ""<Pointer>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TouchInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""ee99702f-7ecb-4ab5-8c1d-5c03fc56b156"",
                     ""path"": ""<Touchscreen>/primaryTouch/press"",
                     ""interactions"": """",

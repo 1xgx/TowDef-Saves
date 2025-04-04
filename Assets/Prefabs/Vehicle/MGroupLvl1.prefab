@@ -171,7 +171,7 @@ MonoBehaviour:
   IndexY: 0
   _targetHexagon: {fileID: 0}
   _speed: 1
-  _damage: 123
+  _damage: 10
   _gridCell: {fileID: 0}
   SelectedVehicle: 0
   _steps: 1

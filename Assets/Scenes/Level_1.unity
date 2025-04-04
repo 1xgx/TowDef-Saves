@@ -2489,6 +2489,7 @@ GameObject:
   - component: {fileID: 899244616}
   - component: {fileID: 899244617}
   - component: {fileID: 899244618}
+  - component: {fileID: 899244619}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2578,6 +2579,45 @@ MonoBehaviour:
   _choosedObject: {fileID: 0}
   _battleMenu: {fileID: 440585871}
   _subButttleMenu: {fileID: 212992939}
+--- !u!114 &899244619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899244614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c680e924d830d43b7e15bd16670f57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _swipeAction:
+    m_Name: Swipe
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 4b68993c-a956-4208-aaf4-1e5e29b74c25
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 57c44377-5dec-4638-9d06-5f1018b4ace5
+      m_Path: <Touchscreen>/primaryTouch/delta
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Swipe
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 56d930c4-ff04-4d08-bc31-5c2b63aa3b4d
+      m_Path: <Pointer>/delta
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Swipe
+      m_Flags: 0
+    m_Flags: 0
+  _swipeThreashold: 5
+  _movementSpeed: 10
 --- !u!1 &956637653
 GameObject:
   m_ObjectHideFlags: 0
@@ -2692,6 +2732,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2741,8 +2782,8 @@ Camera:
   near clip plane: 14.17
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 9.84
+  orthographic: 1
+  orthographic size: 10.4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2773,6 +2814,45 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c680e924d830d43b7e15bd16670f57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _swipeAction:
+    m_Name: Swipe
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 4b68993c-a956-4208-aaf4-1e5e29b74c25
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 57c44377-5dec-4638-9d06-5f1018b4ace5
+      m_Path: <Touchscreen>/primaryTouch/delta
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Swipe
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 56d930c4-ff04-4d08-bc31-5c2b63aa3b4d
+      m_Path: <Pointer>/delta
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Swipe
+      m_Flags: 0
+    m_Flags: 0
+  _swipeThreashold: 5
+  _movementSpeed: 10
 --- !u!1 &1005672914
 GameObject:
   m_ObjectHideFlags: 0
@@ -4373,6 +4453,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 744410260228130090, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 1015168787818787958, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
       propertyPath: m_Interactable
       value: 1
@@ -4449,6 +4533,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2023862816523279128, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
+      propertyPath: m_Transition
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2023862816523279128, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: -963749194, guid: 064b7ff67c5f1ef41870ef906ef8ffce, type: 3}
+    - target: {fileID: 2023862816523279128, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
+      propertyPath: m_SpriteState.m_SelectedSprite
+      value: 
+      objectReference: {fileID: -963749194, guid: 064b7ff67c5f1ef41870ef906ef8ffce, type: 3}
+    - target: {fileID: 2023862816523279128, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
+      propertyPath: m_SpriteState.m_HighlightedSprite
+      value: 
+      objectReference: {fileID: -963749194, guid: 064b7ff67c5f1ef41870ef906ef8ffce, type: 3}
     - target: {fileID: 2465163453374210543, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -4585,6 +4685,26 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4085004078203499004, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
+      propertyPath: m_Transition
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4085004078203499004, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: -1108310231, guid: 064b7ff67c5f1ef41870ef906ef8ffce, type: 3}
+    - target: {fileID: 4085004078203499004, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
+      propertyPath: m_SpriteState.m_DisabledSprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4085004078203499004, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
+      propertyPath: m_SpriteState.m_SelectedSprite
+      value: 
+      objectReference: {fileID: -1108310231, guid: 064b7ff67c5f1ef41870ef906ef8ffce, type: 3}
+    - target: {fileID: 4085004078203499004, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
+      propertyPath: m_SpriteState.m_HighlightedSprite
+      value: 
+      objectReference: {fileID: -1108310231, guid: 064b7ff67c5f1ef41870ef906ef8ffce, type: 3}
     - target: {fileID: 4090456086920265285, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -4605,6 +4725,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5117405757708640655, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 5208919417659312589, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
       propertyPath: m_text
       value: 'Setting
@@ -4619,6 +4743,22 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 174250103, guid: 46a9b6877ad4d49438a9e7f717d607e4, type: 3}
+    - target: {fileID: 5914674671607537791, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
+      propertyPath: m_Transition
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5914674671607537791, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: -2138432034, guid: 064b7ff67c5f1ef41870ef906ef8ffce, type: 3}
+    - target: {fileID: 5914674671607537791, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
+      propertyPath: m_SpriteState.m_SelectedSprite
+      value: 
+      objectReference: {fileID: -2138432034, guid: 064b7ff67c5f1ef41870ef906ef8ffce, type: 3}
+    - target: {fileID: 5914674671607537791, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
+      propertyPath: m_SpriteState.m_HighlightedSprite
+      value: 
+      objectReference: {fileID: -2138432034, guid: 064b7ff67c5f1ef41870ef906ef8ffce, type: 3}
     - target: {fileID: 5931322649478200186, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -4714,6 +4854,10 @@ PrefabInstance:
     - target: {fileID: 6393471341001058912, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7019779976660539312, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 115
       objectReference: {fileID: 0}
     - target: {fileID: 7161605616108306482, guid: 9e75114d82984ea4b89ad99f01f7bffe, type: 3}
       propertyPath: m_IsActive

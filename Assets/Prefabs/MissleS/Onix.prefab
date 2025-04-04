@@ -72,9 +72,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 0
-  _maxHealth: 25
+  _maxHealth: 10
   _speed: 10
-  _damage: 1
+  _damage: 3
   healthBar: {fileID: 0}
 --- !u!114 &8378176758291528595
 MonoBehaviour:
@@ -95,6 +95,7 @@ MonoBehaviour:
   _missleCellContoroller: {fileID: 0}
   _missleLineContoroller: {fileID: 0}
   _gameManager: {fileID: 0}
+  _costOfDestroy: 25
   missleType: line
 --- !u!54 &-1371167203002081269
 Rigidbody:

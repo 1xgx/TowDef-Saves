@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ECSController : MonoBehaviour
 {
-    public static float _health, _maxHealth = 100.0f;
+    public static float _health, _maxHealth = 500.0f;
     public int indexX, indexY;
     [SerializeField] private BuildingHealth healthBar;
 

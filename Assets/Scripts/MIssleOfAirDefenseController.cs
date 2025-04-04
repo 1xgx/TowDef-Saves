@@ -25,7 +25,7 @@ public class MIssleOfAirDefenseController : MonoBehaviour
         {
             if (other.GetComponent<Missle>())
             {
-                other.GetComponent<Missle>().TakeDamage(10.0f);
+                other.GetComponent<Missle>().TakeDamage(_damage);
             }
             //Destroy(other.gameObject);
             Destroy(gameObject);

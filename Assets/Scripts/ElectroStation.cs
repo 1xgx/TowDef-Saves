@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class ElectroStation : MonoBehaviour
 {
-    public static float _health, _maxHealth = 1000.0f;
+    public static float _health;
+    public static float _maxHealth = 200.0f;
     public int indexX, indexY;
     [SerializeField] private BuildingHealth healthBar;
     
@@ -26,17 +27,18 @@ public class ElectroStation : MonoBehaviour
             GameManager tmpGameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
             for(int i = 0; i < tmpGameManager.Towers.Count; i++)
             {
-                if(gameObject == tmpGameManager.Towers[i])
+                if(tmpGameManager.Towers[i].GetComponent<ElectroStation>())
                 {
-                    tmpGameManager.Towers.RemoveAt(i);
                     Die();
+                    tmpGameManager.Towers.RemoveAt(i);
                 }
             }
         }
     }
     private void Die() 
     {
-        SceneManager.LoadSceneAsync(0);
+        Debug.Log("Hello World");
+        SceneManager.LoadSceneAsync(3);
 
     }
 }

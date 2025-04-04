@@ -143,60 +143,14 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    private void OnEnable()
-    {
-        _controls.Enable();
-    }
-    private void OnDisable()
-    {
-        _controls.Disable();
-    }
-   
     public void UpdateMoney()
     {
         _textOfMoney.text = "" + _money;
     }
     private void Update()
     {
-        _controls.Touch.TouchPress.started += _ => SwipeStart();
-        _controls.Touch.TouchPress.canceled += _ => SwipeEnd();
         ObjectSelection();
         ObjectSetPosition();
-        
-        
-    }
-    private void SwipeStart()
-    {
-        _swipeCoroutine = StartCoroutine(SwipeDetection());
-    }
-    private void SwipeEnd()
-    {
-        StopCoroutine(_swipeCoroutine);
-    }
-    IEnumerator SwipeDetection()
-    {
-        float previousDistance = 0.0f, currentDistance = 0.0f;
-        Debug.Log("Hello");
-        while (true) 
-        {
-            currentDistance = Vector2.Distance(_stabilizator.position, _controls.Touch.PrimaryFingerPositon.ReadValue<Vector2>());
-            //SwipeRight
-            if (currentDistance > previousDistance && _cameraTransform.position.x > -4.6f)
-            {
-                Vector3 targetPosition = _cameraTransform.position;
-                targetPosition.x -= 1;
-                _cameraTransform.position = Vector3.Slerp(_cameraTransform.position, new Vector3(targetPosition.x, 17.5f, -12.0f), Time.deltaTime * _cameraSpeed);
-            }
-            //SwipeLeft
-            if (currentDistance < previousDistance && _cameraTransform.position.x < 4.6f)
-            {
-                Vector3 targetPosition = _cameraTransform.position;
-                targetPosition.x += 1;
-                _cameraTransform.position = Vector3.Slerp(_cameraTransform.position, new Vector3(targetPosition.x, 17.5f, -12.0f), Time.deltaTime * _cameraSpeed);
-            }
-            previousDistance = currentDistance;
-            yield return null;
-        }
     }
     private void ObjectSelection()
     {
@@ -234,11 +188,9 @@ public class PlayerController : MonoBehaviour
                         _selectedObject.gameObject.GetComponent<SixAngelSelection>().ActiveObject.SetActive(false);
                         _selectedObject.gameObject.GetComponent<SixAngelSelection>().UnactiveObject.SetActive(true);
                         _selectedObject.gameObject.GetComponent<SixAngelSelection>().tmpSelectedObject = gameObject;
-                        if (_geoPointRef != null)
+                        if (_geoPointRef != null && _selectedObject.tag != "DeadZone")
                         {
                             _geoPointRef.transform.position = new Vector3(_selectedObject.transform.position.x, 0, _selectedObject.transform.position.z);
-                            //_subButttleMenu.transform.position = new Vector3(_geoPointRef.transform.position.x, _geoPointRef.transform.position.y, _geoPointRef.transform.position.z);
-
                             UnityEngine.UI.Button newBut = _battleMenu.GetComponent<BattleMenu>()._buttons[2].GetComponent<BattleMenuSubButtons>().BattleMenu[3].GetComponent<UnityEngine.UI.Button>();
                             newBut.interactable = true;
 
@@ -246,15 +198,17 @@ public class PlayerController : MonoBehaviour
                         }
                         else
                         {
-                            //_subButttleMenu.GetComponent<BattleMenu>()._buttons[2].GetComponent<BattleMenuSubButtons>().BattleMenu[3].interactable = true;
                             UnityEngine.UI.Button newBut = _battleMenu.GetComponent<BattleMenu>()._buttons[2].GetComponent<BattleMenuSubButtons>().BattleMenu[3].GetComponent<UnityEngine.UI.Button>();
                             newBut.interactable = false;
                         }
-                        //if(_subButttleMenu.active == false)
-                            _battleMenu.SetActive(true);
-                        _battleMenu.transform.position = new Vector3(_selectedObject.transform.position.x, 1.0f, _selectedObject.transform.position.z);
+                        _battleMenu.SetActive(true);
+                        _battleMenu.transform.position = new Vector3(_selectedObject.transform.position.x, 2.4f, _selectedObject.transform.position.z);
 
 
+                    }
+                    else if(_selectedObject.tag == MilitaryObject && _geoPointRef != null)
+                    {
+                        return;
                     }
                     else if(_selectedObject.tag == MilitaryObject && _gameManager.FightIsStarted)
                     {
@@ -265,10 +219,7 @@ public class PlayerController : MonoBehaviour
                         _gameManager.SelectedObject = "nothing";
                         _selectMode = true;
                         _builtMode = false;
-                        //_battleMenu.SetActive(false);
-                        //_subButttleMenu.SetActive(true);
-                        //_subButttleMenu.transform.position = new Vector3(_geoPointRef.transform.position.x, _geoPointRef.transform.position.y, _geoPointRef.transform.position.z);
-                    }
+                        }
                     else
                     {
                         return;
@@ -281,7 +232,6 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
     public void ObjectSetPositionOnHexagon(string message)
     {
         bool isNotNull = _selectedObject != null && _selectedObject.tag == _nameZone[0];
@@ -429,13 +379,10 @@ public class PlayerController : MonoBehaviour
         Vector3 towerOffset = new Vector3(0,0,0);
         switch (_gameManager.SelectedObject)
         {
-            //case "1": _choosedObject = _airDeffense; break;
-            //case "2":_choosedObject = _radar; break;
-            //case "TestGepard": _choosedObject = _gepard; break;//Test
-            //case "TestMGroup": _choosedObject = _mobileGroup; break;//Test
             case "Go":
-                if(_selectedObject != null && _tmpSelectedObject != null)
+                if(_selectedObject != null && _tmpSelectedObject != null && _selectedObject.tag != "DeadZone")
                 {
+                    
                     VehicleCellMovement tmpVehicleCellMovement = _tmpSelectedObject.GetComponent<VehicleCellMovement>();
                     SixAngelSelection tmpHexagon = _selectedObject.GetComponent<SixAngelSelection>();
                     tmpVehicleCellMovement.GetChoosedHexagon(tmpHexagon.IndexX, tmpHexagon.IndexY, _selectedObject.transform, true);
@@ -443,6 +390,7 @@ public class PlayerController : MonoBehaviour
                     tmpVehicleCellMovement.IndexY = tmpHexagon.IndexY;
                     tmpVehicleCellMovement.VehiclePosition.Item1 = tmpHexagon.IndexX;
                     tmpVehicleCellMovement.VehiclePosition.Item2 = tmpHexagon.IndexY;
+                    tmpVehicleCellMovement.transform.localScale = new Vector3(tmpVehicleCellMovement.transform.localScale.x - .1f, tmpVehicleCellMovement.transform.localScale.y - .1f, tmpVehicleCellMovement.transform.localScale.z - .1f);
                     _selectedObject.GetComponent<SixAngelSelection>().ReferenceOfObject = _tmpSelectedObject;
                     _tmpCellSelectedObject.GetComponent<SixAngelSelection>().ReferenceOfObject = null;
                     _tmpCellSelectedObject = _selectedObject;
@@ -451,6 +399,7 @@ public class PlayerController : MonoBehaviour
                     _selectMode = false;
                     _subButttleMenu.active = false;
                     _battleMenu.SetActive(true);
+                    
                     Destroy(_geoPointRef);
                 }
                 break;
