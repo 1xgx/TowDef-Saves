@@ -8,6 +8,7 @@ public class SubElectroStation : MonoBehaviour
     public int indexX, indexY;
     [SerializeField] private BuildingHealth healthBar;
     public GameObject ElectroStation;
+    [SerializeField] private ObjectType _type;
     private void Awake()
     {
         healthBar = GetComponentInChildren<BuildingHealth>();
@@ -30,6 +31,7 @@ public class SubElectroStation : MonoBehaviour
                 if (gameObject.transform == tmpGameManager.Towers[i])
                 {
                     tmpGameManager.Towers.RemoveAt(i);
+                    tmpGameManager.DieSound(_type);
                     Die();
                 }
             }

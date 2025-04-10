@@ -5,8 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void PlayGame()
+    [SerializeField] private AudioClip _audioClip;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private float _delayOfClick = 0.5f;
+    public void PlayGame(int IndexScene)
     {
-        SceneManager.LoadSceneAsync(1);
+        _audioSource.PlayOneShot(_audioClip);
+        StartCoroutine(Delay(IndexScene));
+        
+        
+    }
+    IEnumerator Delay(int IndexScene)
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (IndexScene == 1) SceneManager.LoadSceneAsync(IndexScene);
     }
 }

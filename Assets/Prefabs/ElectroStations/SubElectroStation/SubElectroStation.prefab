@@ -1321,6 +1321,7 @@ MonoBehaviour:
   indexY: 0
   healthBar: {fileID: 0}
   ElectroStation: {fileID: 0}
+  _type: 2
 --- !u!1001 &2454466601176504080
 PrefabInstance:
   m_ObjectHideFlags: 0

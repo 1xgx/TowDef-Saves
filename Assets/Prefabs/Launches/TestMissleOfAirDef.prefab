@@ -121,4 +121,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
-  _speed: 123
+  _speed: 10

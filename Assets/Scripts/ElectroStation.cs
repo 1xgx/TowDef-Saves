@@ -9,7 +9,7 @@ public class ElectroStation : MonoBehaviour
     public static float _maxHealth = 200.0f;
     public int indexX, indexY;
     [SerializeField] private BuildingHealth healthBar;
-    
+    [SerializeField] private ObjectType _type;
     private void Awake()
     {
         healthBar = GetComponentInChildren<BuildingHealth>();
@@ -29,8 +29,9 @@ public class ElectroStation : MonoBehaviour
             {
                 if(tmpGameManager.Towers[i].GetComponent<ElectroStation>())
                 {
-                    Die();
                     tmpGameManager.Towers.RemoveAt(i);
+                    tmpGameManager.DieSound(_type);
+                    Die();
                 }
             }
         }

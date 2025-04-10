@@ -1,0 +1,142 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4283372475919404793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7215033213499343253}
+  - component: {fileID: 2469308123758217040}
+  - component: {fileID: 3911592547623317831}
+  - component: {fileID: 1445958954246238999}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7215033213499343253
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4283372475919404793}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2469308123758217040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4283372475919404793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7caf231fb0e5070429c44474145eb6aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3911592547623317831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4283372475919404793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e396d8bc64ce084384982c643f7ee02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _airDeffense: {fileID: 6534297857220710281, guid: 5d6529ea03d1c7c49a702a126ed4f501, type: 3}
+  _electroStation: {fileID: 6336865885115562195, guid: e3291de8984c0524392df09f7a9a7d50, type: 3}
+  _subElectroStations:
+  - {fileID: 4055469595693136558, guid: 69bb28c98f9a03845b6687da753ab738, type: 3}
+  - {fileID: 5863548482272368747, guid: 92c9cd85abfa3c54c8d53544df2f9da1, type: 3}
+  - {fileID: 3234979770392021156, guid: f2325235b5ef0a949a0d27e41e224c04, type: 3}
+  - {fileID: 8815348955066470747, guid: c47c77fc5446c484f95a9732a746d4bd, type: 3}
+  _radar: {fileID: 5513951649785449163, guid: 22b4a90dc1f506645a8eeea2d82ac276, type: 3}
+  _ecs: {fileID: 222275183224954390, guid: 99576bcb08cecb64ea7482d136f0d5fe, type: 3}
+  _gepard: {fileID: 1383920481807969626, guid: 9bb4d1b4473c6514ca5f377aef083dee, type: 3}
+  _mobileGroup: {fileID: 4071253049366143338, guid: 64e296c0892dc4a458ff2c1a20a12abd, type: 3}
+  _selectedObject: {fileID: 0}
+  _tmpSelectedObject: {fileID: 0}
+  _tmpCellSelectedObject: {fileID: 0}
+  _AllReservedCell: []
+  _geoPoint: {fileID: 6852408414779055780, guid: cc11c13a6d94d1249963d26db526e469, type: 3}
+  _geoPointRef: {fileID: 0}
+  _cells: {fileID: 0}
+  _money: 999
+  _textOfMoney: {fileID: 0}
+  _nameZone:
+  - Zone
+  - WaterZone
+  - DeadZone
+  _gameManager: {fileID: 0}
+  _selectMode: 0
+  _builtMode: 1
+  _AdminBool: 0
+  _timer: {fileID: 0}
+  _currentTime: 3
+  _electroStations: []
+  _subElectroStationList: []
+  _airDefenses: []
+  _airDefensesControler: []
+  _radars: []
+  _gepards: []
+  _mobileGroups: []
+  _ecss: []
+  _stabilizator: {fileID: 0}
+  _cameraSpeed: 9
+  _choosedObject: {fileID: 0}
+  _battleMenu: {fileID: 0}
+  _subButttleMenu: {fileID: 0}
+--- !u!114 &1445958954246238999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4283372475919404793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c680e924d830d43b7e15bd16670f57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _swipeAction:
+    m_Name: Swipe
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 4b68993c-a956-4208-aaf4-1e5e29b74c25
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 57c44377-5dec-4638-9d06-5f1018b4ace5
+      m_Path: <Touchscreen>/primaryTouch/delta
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Swipe
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 56d930c4-ff04-4d08-bc31-5c2b63aa3b4d
+      m_Path: <Pointer>/delta
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Swipe
+      m_Flags: 0
+    m_Flags: 0
+  _swipeThreashold: 5
+  _movementSpeed: 10

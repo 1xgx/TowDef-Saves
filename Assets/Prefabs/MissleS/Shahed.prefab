@@ -286,6 +286,7 @@ MonoBehaviour:
   _missleLineContoroller: {fileID: 0}
   _gameManager: {fileID: 0}
   _costOfDestroy: 25
+  _type: 0
   missleType: cell
 --- !u!114 &3027795345576599982
 MonoBehaviour:

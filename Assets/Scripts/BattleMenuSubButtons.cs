@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class BattleMenuSubButtons : MonoBehaviour
 {
     public GameObject[] BattleMenu;
-
     public void ShowSubMenu(bool active)
     {
+
         if (active)
         {
             for (int i = 0; i < BattleMenu.Length; i++)

@@ -312,6 +312,7 @@ MonoBehaviour:
   indexX: 0
   indexY: 0
   healthBar: {fileID: 0}
+  _type: 1
 --- !u!1 &2975753250064696284
 GameObject:
   m_ObjectHideFlags: 0

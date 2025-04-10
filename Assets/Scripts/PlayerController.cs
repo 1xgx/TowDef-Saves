@@ -107,6 +107,7 @@ public class PlayerController : MonoBehaviour
             _electroStations[0].GetComponent<ElectroStation>().indexX = _hexagonGrid[x, y].GetComponent<SixAngelSelection>().IndexX;
             _electroStations[0].GetComponent<ElectroStation>().indexY = _hexagonGrid[x, y].GetComponent<SixAngelSelection>().IndexY;
             _gameManager.Towers.Add(NewBuild.GetComponent<Transform>());
+            _hexagonGrid[x, y].GetComponent<SixAngelSelection>().ReferenceOfObject = NewBuild;
         }
         else
         {
@@ -135,7 +136,7 @@ public class PlayerController : MonoBehaviour
                 NewBuild.GetComponent<SubElectroStation>().indexY = _hexagonGrid[x, y].GetComponent<SixAngelSelection>().IndexY;
                 NewBuild.GetComponent<SubElectroStation>().ElectroStation = _electroStations[0];
                 _gameManager.Towers.Add(NewBuild.GetComponent<Transform>());
-                
+                _hexagonGrid[x, y].GetComponent<SixAngelSelection>().ReferenceOfObject = NewBuild;
             }
             else
             {
@@ -185,10 +186,11 @@ public class PlayerController : MonoBehaviour
                     }
                     if (_selectedObject != null && _selectedObject.tag == "DeadZone" || _selectedObject.tag == "Zone" || _selectedObject.tag == "WaterZone")
                     {
-                        _selectedObject.gameObject.GetComponent<SixAngelSelection>().ActiveObject.SetActive(false);
-                        _selectedObject.gameObject.GetComponent<SixAngelSelection>().UnactiveObject.SetActive(true);
-                        _selectedObject.gameObject.GetComponent<SixAngelSelection>().tmpSelectedObject = gameObject;
-                        if (_geoPointRef != null && _selectedObject.tag != "DeadZone")
+                        SixAngelSelection tmpSixAngelSelection = _selectedObject.gameObject.GetComponent<SixAngelSelection>();
+                        tmpSixAngelSelection.ActiveObject.SetActive(false);
+                        tmpSixAngelSelection.UnactiveObject.SetActive(true);
+                        tmpSixAngelSelection.tmpSelectedObject = gameObject;
+                        if (_geoPointRef != null && _selectedObject.tag != "DeadZone" && tmpSixAngelSelection.ReferenceOfObject == null)
                         {
                             _geoPointRef.transform.position = new Vector3(_selectedObject.transform.position.x, 0, _selectedObject.transform.position.z);
                             UnityEngine.UI.Button newBut = _battleMenu.GetComponent<BattleMenu>()._buttons[2].GetComponent<BattleMenuSubButtons>().BattleMenu[3].GetComponent<UnityEngine.UI.Button>();
@@ -283,7 +285,7 @@ public class PlayerController : MonoBehaviour
 
                                 if (_ecss.Count > 0)
                                 {
-                                    for (int i = 0; i < _radars.Count; i++)
+                                    for (int i = 0; i < _ecss.Count; i++)
                                     {
                                         _airDefenses[i].GetComponent<AirDefenseController>().ECS = _ecss;
                                     }
@@ -315,7 +317,7 @@ public class PlayerController : MonoBehaviour
                                 }
                                 if (_airDefenses.Count > 0)
                                 {
-                                    for (int i = 0; i < _radars.Count; i++)
+                                    for (int i = 0; i < _airDefenses.Count; i++)
                                     {
                                         _airDefenses[i].GetComponent<AirDefenseController>().ECS = _ecss;
                                     }

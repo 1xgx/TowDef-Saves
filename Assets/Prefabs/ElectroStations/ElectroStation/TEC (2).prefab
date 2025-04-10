@@ -490,6 +490,7 @@ MonoBehaviour:
   indexX: 0
   indexY: 0
   healthBar: {fileID: 0}
+  _type: 1
 --- !u!1001 &8369622943840745368
 PrefabInstance:
   m_ObjectHideFlags: 0

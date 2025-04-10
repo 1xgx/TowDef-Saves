@@ -1,13 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BattleMenu : MonoBehaviour
 {
     public GameObject[] _buttons;
+    [SerializeField] private AudioClip _audioClip;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private float _delayOfClick = 0.5f;
     public void HideOtherMenu(string ButtonClicked)
     {
+        _audioSource.PlayOneShot(_audioClip);
+        StartCoroutine(Delay());
         switch (ButtonClicked)
         {
             case "Ammo":
@@ -38,5 +44,9 @@ public class BattleMenu : MonoBehaviour
                 _buttons[1].GetComponent<BattleMenuSubButtons>().ShowSubMenu(false);
                 break;
         }
+    }
+    IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(_delayOfClick);
     }
 }

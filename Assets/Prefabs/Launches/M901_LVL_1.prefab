@@ -230,7 +230,7 @@ MonoBehaviour:
   _missleSpawned: {fileID: 0}
   _misslesSpawned: []
   _bullets: 5
-  _refBullet: {fileID: 8008616138855683407, guid: b9b2790ac47de6744b88551921da2791, type: 3}
+  _refBullet: {fileID: 3364023313101765247, guid: b9b2790ac47de6744b88551921da2791, type: 3}
   flag: 1
   flag2: 0
   ECS: []

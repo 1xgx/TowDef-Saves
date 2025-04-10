@@ -26,8 +26,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _currentWave = 1;
     [SerializeField] private TextMeshProUGUI _timer;
     [SerializeField] private GameObject LevelPanel;
-    
-
+    [Header("Sound Effect Script")]
+    [SerializeField] private SoundEffectsSc _soundEffectsSc;
+    [SerializeField] private AudioClip _audioClip;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private float _delayOfClick = 0.5f;
     [Header("Day and Night cycle")]
     [SerializeField] private Light _directionalLight;
     [SerializeField] private Material _skyBoxNight;
@@ -70,6 +73,10 @@ public class GameManager : MonoBehaviour
         _playerContorler._money += value;
         _playerContorler.UpdateMoney();
     }
+    public void DieSound(ObjectType Type)
+    {
+        //_soundEffectsSc.Play(Type);
+    }
     private void NextWave()
     {
         _currentWave++;
@@ -94,6 +101,8 @@ public class GameManager : MonoBehaviour
     }
     public void BuildSelection(string message)
     {
+        _audioSource.PlayOneShot(_audioClip);
+        StartCoroutine(Delay());
         SelectedObject = message;
         Debug.Log(message);
         _player.ObjectSetPositionOnHexagon(message);
@@ -209,5 +218,8 @@ public class GameManager : MonoBehaviour
         _directionalLight.intensity = 1f;
         UnityEngine.RenderSettings.skybox = _skyBoxDay;
     }
-
+    IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(_delayOfClick);
+    }
 }

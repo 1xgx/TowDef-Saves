@@ -13,7 +13,8 @@ public class Missle : MonoBehaviour
     [SerializeField] private MissleController _missleLineContoroller;
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private int _costOfDestroy = 25;
-    
+    [SerializeField] private ObjectType _type;
+
     [Tooltip("Type of missle")]
     public string missleType;
     private void Start()
@@ -54,6 +55,7 @@ public class Missle : MonoBehaviour
         if(healthBar != null)healthBar.UpdateHealthBar(_health, _maxHealth);
         if (_health <= 0)
         {
+            _gameManager.DieSound(_type);
             _gameManager.sendMoney(_costOfDestroy);
             Destroy(gameObject);
         }
