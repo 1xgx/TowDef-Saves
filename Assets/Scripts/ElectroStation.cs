@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class ElectroStation : MonoBehaviour
 {
     public static float _health;
-    public static float _maxHealth = 200.0f;
+    public static float _maxHealth = 100.0f;
     public int indexX, indexY;
     [SerializeField] private BuildingHealth healthBar;
     [SerializeField] private ObjectType _type;

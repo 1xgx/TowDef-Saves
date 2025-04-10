@@ -5,7 +5,7 @@ using UnityEngine;
 public class MIssleOfAirDefenseController : MonoBehaviour
 {
     public Transform Target;
-    private float _damage = 10.0f;
+    [SerializeField] private float _damage = 10.0f;
     [SerializeField]private float _speed = 100f;
 
     private void FixedUpdate()

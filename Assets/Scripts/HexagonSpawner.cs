@@ -6,7 +6,7 @@ public class HexagonSpawner : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _typeOfHexagons;
     [SerializeField] private GameObject[,] _hexagons;
-    [SerializeField] private GridCell _body;
+    [SerializeField] private Transform _parentContainer;
     [SerializeField] int x = 16;
     [SerializeField] int y = 16;
     private void Awake()
@@ -20,7 +20,7 @@ public class HexagonSpawner : MonoBehaviour
         {
             for (int j = 0; j < y; j++)
             {
-                GameObject newObject = Instantiate(_typeOfHexagons[Random.Range(0,3)], new Vector3(-9 + 1 * i,0.5f,-22 + 1 * j), Quaternion.identity);
+                GameObject newObject = Instantiate(_typeOfHexagons[Random.Range(0,2)], new Vector3(-9 + 1 * i,0.5f,-22 + 1 * j), Quaternion.identity, _parentContainer);
                 _hexagons[i, j] = newObject;
                 newObject.GetComponent<SixAngelSelection>().IndexX = i;
                 newObject.GetComponent<SixAngelSelection>().IndexY = j;

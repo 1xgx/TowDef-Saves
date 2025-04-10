@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SubElectroStation : MonoBehaviour
 {
-    public static float _health, _maxHealth = 200.0f;
+    public static float _health, _maxHealth = 50.0f;
     public int indexX, indexY;
     [SerializeField] private BuildingHealth healthBar;
     public GameObject ElectroStation;

@@ -279,7 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 0
-  _maxHealth: 10
+  _maxHealth: 50
   healthBar: {fileID: 1351837644753130574}
   _target: {fileID: 0}
   _missleCellContoroller: {fileID: 0}
@@ -302,12 +302,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 1
   _target: {fileID: 0}
-  _damage: 12
+  _damage: 25
   _gridCell: {fileID: 0}
   _steps: 1
   _canMove: 0
   _health: 0
-  _maxHealth: 100
+  _maxHealth: 50
   healthBar: {fileID: 1351837644753130574}
 --- !u!54 &-3508999166588368018
 Rigidbody:
