@@ -10,7 +10,8 @@ public class GridCell : MonoBehaviour
     {
         hexagonsSort();
     }
-    private void hexagonsSort()
+    
+    public void hexagonsSort()
     {
         int maxX = 0;
         int maxY = 0;

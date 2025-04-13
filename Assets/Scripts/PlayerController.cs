@@ -102,7 +102,6 @@ public class PlayerController : MonoBehaviour
         if (_hexagonGrid[x, y].tag == "Zone")
         {
             GameObject NewBuild = Instantiate(_electroStation, new Vector3(_hexagonGrid[x, y].transform.position.x, .1f, _hexagonGrid[x,y].transform.position.z), Quaternion.identity);
-            
             if (_electroStations.Count <= 0) _electroStations.Add(NewBuild); _AllReservedCell.Add(NewBuild);
             _electroStations[0].GetComponent<ElectroStation>().indexX = _hexagonGrid[x, y].GetComponent<SixAngelSelection>().IndexX;
             _electroStations[0].GetComponent<ElectroStation>().indexY = _hexagonGrid[x, y].GetComponent<SixAngelSelection>().IndexY;
@@ -155,6 +154,7 @@ public class PlayerController : MonoBehaviour
     }
     private void ObjectSelection()
     {
+        SixAngelSelection tmpSixAngelSelection = new SixAngelSelection();
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -177,6 +177,7 @@ public class PlayerController : MonoBehaviour
                 if (Physics.Raycast(ray, out hit) && hit.collider != null)
                 {
                     Debug.Log("Нажали на объект: " + hit.collider.gameObject.name);
+
                     if (_selectedObject) _selectedObject = null;
                     _selectedObject = hit.collider.gameObject;
                     if (_selectedObject.tag == "Plane")
@@ -186,7 +187,7 @@ public class PlayerController : MonoBehaviour
                     }
                     if (_selectedObject != null && _selectedObject.tag == "DeadZone" || _selectedObject.tag == "Zone" || _selectedObject.tag == "WaterZone")
                     {
-                        SixAngelSelection tmpSixAngelSelection = _selectedObject.gameObject.GetComponent<SixAngelSelection>();
+                        tmpSixAngelSelection = _selectedObject.gameObject.GetComponent<SixAngelSelection>();
                         tmpSixAngelSelection.ActiveObject.SetActive(false);
                         tmpSixAngelSelection.UnactiveObject.SetActive(true);
                         tmpSixAngelSelection.tmpSelectedObject = gameObject;

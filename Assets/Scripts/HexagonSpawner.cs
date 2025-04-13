@@ -26,7 +26,8 @@ public class HexagonSpawner : MonoBehaviour
                 newObject.GetComponent<SixAngelSelection>().IndexY = j;
             }
         }
-     //X0 = -9  Y0 = -22 
+        //X0 = -9  Y0 = -22 
+        _parentContainer.GetComponent<GridCell>().hexagonsSort();
     }
 
 }

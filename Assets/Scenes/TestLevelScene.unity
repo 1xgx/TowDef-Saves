@@ -722,6 +722,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2738748411083901379, guid: cc2e7472e8d0c2e49b74e8599e279904, type: 3}
+      propertyPath: _hexagons
+      value: 
+      objectReference: {fileID: 1498865909}
     - target: {fileID: 7392172372494097060, guid: cc2e7472e8d0c2e49b74e8599e279904, type: 3}
       propertyPath: _timer
       value: 
