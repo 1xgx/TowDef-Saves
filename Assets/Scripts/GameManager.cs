@@ -10,8 +10,6 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Canvas _UI;
-    [SerializeField] private GameObject _towerButton;
-    [SerializeField] private GameObject _startButton;
     [SerializeField] private MissleSpawner _missleSpawner;
     [SerializeField] private PlayerController _playerContorler;
     [SerializeField] private Missle[] _allMissles; 
@@ -58,15 +56,13 @@ public class GameManager : MonoBehaviour
     public void startGame()
     {
         isGameActive = true;
-        _startButton.SetActive(true);
+        //_startButton.SetActive(true);
         
     }
     public void startPlayerGame()
     {
         FightIsStarted = true;
         _missleSpawner.spawnStart(gameObject.GetComponent<GameManager>(), _currentWave);
-        
-        _towerButton.SetActive(false);
     }
     public void sendMoney(int value)
     {

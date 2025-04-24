@@ -9,16 +9,24 @@ public class SixAngelSelection : MonoBehaviour
     public GameObject ReferenceOfObject;
     public int IndexX;
     public int IndexY;
+    public int Index;
     
     private void Update()
     {
+        
         if (tmpSelectedObject == null) return;
-        if(tmpSelectedObject != null && tmpSelectedObject.GetComponent<PlayerController>()._selectedObject != null && tmpSelectedObject.GetComponent<PlayerController>()._selectedObject.name != gameObject.name)
+        if (tmpSelectedObject != null && tmpSelectedObject.GetComponent<PlayerController>()._selectedObject != null)
         {
             if (ReferenceOfObject != null && ReferenceOfObject.GetComponent<VehicleCellMovement>()) ReferenceOfObject.GetComponent<VehicleCellMovement>().SelectedVehicle = false;
-            tmpSelectedObject = null;
-            ActiveObject.SetActive(true);
-            UnactiveObject.SetActive(false);
+            SixAngelSelection tmpSixAngel = tmpSelectedObject.GetComponent<PlayerController>().
+            _selectedObject.GetComponent<SixAngelSelection>();
+            if (tmpSixAngel && tmpSixAngel.Index != Index)
+            {
+                tmpSelectedObject = null;
+                ActiveObject.SetActive(true);
+                UnactiveObject.SetActive(false);
+            }
+            
         }
     }
 }

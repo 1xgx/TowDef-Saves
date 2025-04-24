@@ -30,6 +30,10 @@ public class GridCell : MonoBehaviour
         {
             _hexagonGrid[hexagon.GetComponent<SixAngelSelection>().IndexX, hexagon.GetComponent<SixAngelSelection>().IndexY] = hexagon;
         }
+        for (int i = 0; i < _hexagonsAll.Count; i++)
+        {
+            _hexagonsAll[i].GetComponent<SixAngelSelection>().Index = i;
+        }
         for (int x = 0; x < maxX; x++)
         {
             for(int y = 0; y < maxY; y++)

@@ -282,6 +282,10 @@ MonoBehaviour:
   _parentContainer: {fileID: 1498865910}
   x: 16
   y: 16
+  hexWidth: 1
+  hexHeight: 1
+  distanceBetweenTwoHex: 0.25
+  offSetGrid: {x: -9, y: 0, z: -19}
 --- !u!1001 &604619981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -743,6 +747,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1009038894}
     - target: {fileID: 7392172372494097060, guid: cc2e7472e8d0c2e49b74e8599e279904, type: 3}
+      propertyPath: _waveDuration
+      value: 1200
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392172372494097060, guid: cc2e7472e8d0c2e49b74e8599e279904, type: 3}
       propertyPath: _breakDuration
       value: 1000
       objectReference: {fileID: 0}
@@ -1018,7 +1026,7 @@ Transform:
   m_GameObject: {fileID: 1498865909}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.756922, y: -52.555088, z: 83.40736}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1186,6 +1194,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1730733310802766138, guid: 85603b7a987f46642b63997249cbdd42, type: 3}
+      propertyPath: _gridCell
+      value: 
+      objectReference: {fileID: 1498865911}
+    - target: {fileID: 1730733310802766138, guid: 85603b7a987f46642b63997249cbdd42, type: 3}
+      propertyPath: _gameManager
+      value: 
+      objectReference: {fileID: 682889280}
     - target: {fileID: 4885626686339936364, guid: 85603b7a987f46642b63997249cbdd42, type: 3}
       propertyPath: m_Name
       value: MissleSpawner
