@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
     }
     public void DieSound(ObjectType Type)
     {
-        //_soundEffectsSc.Play(Type);
+        _soundEffectsSc.Play(Type);
     }
     private void NextWave()
     {

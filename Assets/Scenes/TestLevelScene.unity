@@ -730,6 +730,22 @@ PrefabInstance:
       propertyPath: _hexagons
       value: 
       objectReference: {fileID: 1498865909}
+    - target: {fileID: 6986887460689780021, guid: cc2e7472e8d0c2e49b74e8599e279904, type: 3}
+      propertyPath: _audioSource
+      value: 
+      objectReference: {fileID: 1828176347}
+    - target: {fileID: 6986887460689780021, guid: cc2e7472e8d0c2e49b74e8599e279904, type: 3}
+      propertyPath: _objectSoundEffects.Array.data[0]._clip
+      value: 
+      objectReference: {fileID: 8300000, guid: a742869bab0bb3241a519d0f30db30c7, type: 3}
+    - target: {fileID: 6986887460689780021, guid: cc2e7472e8d0c2e49b74e8599e279904, type: 3}
+      propertyPath: _objectSoundEffects.Array.data[1]._clip
+      value: 
+      objectReference: {fileID: 8300000, guid: a742869bab0bb3241a519d0f30db30c7, type: 3}
+    - target: {fileID: 6986887460689780021, guid: cc2e7472e8d0c2e49b74e8599e279904, type: 3}
+      propertyPath: _objectSoundEffects.Array.data[2]._clip
+      value: 
+      objectReference: {fileID: 8300000, guid: a742869bab0bb3241a519d0f30db30c7, type: 3}
     - target: {fileID: 7392172372494097060, guid: cc2e7472e8d0c2e49b74e8599e279904, type: 3}
       propertyPath: _timer
       value: 
@@ -752,7 +768,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7392172372494097060, guid: cc2e7472e8d0c2e49b74e8599e279904, type: 3}
       propertyPath: _breakDuration
-      value: 1000
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7392172372494097060, guid: cc2e7472e8d0c2e49b74e8599e279904, type: 3}
       propertyPath: _missleSpawner
@@ -1045,6 +1061,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hexagonsAll: []
+--- !u!82 &1828176347 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4879633334142179413, guid: cc2e7472e8d0c2e49b74e8599e279904, type: 3}
+  m_PrefabInstance: {fileID: 1090602611}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1966203359
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1193,6 +1214,10 @@ PrefabInstance:
     - target: {fileID: 545795796910424204, guid: 85603b7a987f46642b63997249cbdd42, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1730733310802766138, guid: 85603b7a987f46642b63997249cbdd42, type: 3}
+      propertyPath: _delay
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1730733310802766138, guid: 85603b7a987f46642b63997249cbdd42, type: 3}
       propertyPath: _gridCell

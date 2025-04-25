@@ -29,8 +29,8 @@ public class ElectroStation : MonoBehaviour
             {
                 if(tmpGameManager.Towers[i].GetComponent<ElectroStation>())
                 {
-                    tmpGameManager.Towers.RemoveAt(i);
                     tmpGameManager.DieSound(_type);
+                    tmpGameManager.Towers.RemoveAt(i);
                     Die();
                 }
             }

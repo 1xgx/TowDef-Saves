@@ -97,6 +97,7 @@ MonoBehaviour:
   _gameManager: {fileID: 0}
   _costOfDestroy: 25
   _type: 0
+  _missleType: 1
   missleType: line
 --- !u!54 &-1371167203002081269
 Rigidbody:

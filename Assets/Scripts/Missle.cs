@@ -14,6 +14,7 @@ public class Missle : MonoBehaviour
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private int _costOfDestroy = 25;
     [SerializeField] private ObjectType _type;
+    public MissleType _missleType;
 
     [Tooltip("Type of missle")]
     public string missleType;
