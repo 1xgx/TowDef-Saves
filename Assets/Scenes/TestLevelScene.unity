@@ -242,7 +242,7 @@ GameObject:
   - component: {fileID: 547855630}
   - component: {fileID: 547855631}
   m_Layer: 0
-  m_Name: HexagonSpawner
+  m_Name: ObjectsSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -275,10 +275,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb6d6bab563da5b44897a9bb5622346b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsGeneratingMap: 1
   _typeOfHexagons:
   - {fileID: 9088277074615156721, guid: 16d4bd9cf17f1b848aa91c871288f254, type: 3}
   - {fileID: 9088277074615156721, guid: 16d4bd9cf17f1b848aa91c871288f254, type: 3}
   - {fileID: 9088277074615156721, guid: 16d4bd9cf17f1b848aa91c871288f254, type: 3}
+  _hexagonObject: {fileID: 0}
   _parentContainer: {fileID: 1498865910}
   x: 16
   y: 16
@@ -286,6 +288,14 @@ MonoBehaviour:
   hexHeight: 1
   distanceBetweenTwoHex: 0.25
   offSetGrid: {x: -9, y: 0, z: -19}
+  _electroStations: []
+  _subElectroStationList: []
+  _electroStation: {fileID: 6336865885115562195, guid: e3291de8984c0524392df09f7a9a7d50, type: 3}
+  _subElectroStations:
+  - {fileID: 5863548482272368747, guid: 92c9cd85abfa3c54c8d53544df2f9da1, type: 3}
+  - {fileID: 3234979770392021156, guid: f2325235b5ef0a949a0d27e41e224c04, type: 3}
+  - {fileID: 4055469595693136558, guid: 69bb28c98f9a03845b6687da753ab738, type: 3}
+  _gameManager: {fileID: 682889280}
 --- !u!1001 &604619981
 PrefabInstance:
   m_ObjectHideFlags: 0
