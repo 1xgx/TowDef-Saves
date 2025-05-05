@@ -16,7 +16,6 @@ public class MissleSpawner : MonoBehaviour
         float Delay = _delay / speedOfInstantiate;
         int Missle_Count = 120 / System.Convert.ToInt32(Delay);
         _gameManager = gameManager;
-        //InvokeRepeating(nameof(missleGenerate), Delay, Delay);
         StartCoroutine(QueueOfMissle(Delay, Missle_Count));
     }
     private void OnEnable()
@@ -49,7 +48,6 @@ public class MissleSpawner : MonoBehaviour
         {
             int randomIndexY = Random.Range(0, 15);
             Vector3 newPosition = _gridCell._hexagonGrid[0, randomIndexY].transform.position;
-            //_misslePrefab[randomIndex].GetComponent<MissleCellController>().Spawn();
             GameObject newMissle = Instantiate(_misslePrefab[randomIndex], new Vector3(newPosition.x, .3f, newPosition.z), Quaternion.identity);
             newMissle.GetComponent<MissleCellController>().MissleCellPosition.Item1 = 0;
             newMissle.GetComponent<MissleCellController>().MissleCellPosition.Item2 = randomIndexY;

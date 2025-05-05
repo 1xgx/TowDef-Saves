@@ -93,56 +93,6 @@ public class PlayerController : MonoBehaviour
         if (_currentTime == 0) _gameManager.startPlayerGame();
         _timer.text = "Time: " + _currentTime + "S";
     }
-    //private void SpawnElectroStation()
-    //{
-    //    _hexagonGrid = _cells.GetComponent<GridCell>()._hexagonGrid;
-    //    int x = Random.Range(0+1, _hexagonGrid.GetLength(0)-4);
-    //    int y = Random.Range(0+1, _hexagonGrid.GetLength(1)-4);
-
-    //    if (_hexagonGrid[x, y].tag == "Zone")
-    //    {
-    //        GameObject NewBuild = Instantiate(_electroStation, new Vector3(_hexagonGrid[x, y].transform.position.x, .1f, _hexagonGrid[x,y].transform.position.z), Quaternion.identity);
-    //        if (_electroStations.Count <= 0) _electroStations.Add(NewBuild); _AllReservedCell.Add(NewBuild);
-    //        _electroStations[0].GetComponent<ElectroStation>().indexX = _hexagonGrid[x, y].GetComponent<SixAngelSelection>().IndexX;
-    //        _electroStations[0].GetComponent<ElectroStation>().indexY = _hexagonGrid[x, y].GetComponent<SixAngelSelection>().IndexY;
-    //        _gameManager.Towers.Add(NewBuild.GetComponent<Transform>());
-    //        _hexagonGrid[x, y].GetComponent<SixAngelSelection>().ReferenceOfObject = NewBuild;
-    //    }
-    //    else
-    //    {
-    //        x = Random.Range(0, _hexagonGrid.GetLength(0));
-    //        y = Random.Range(0, _hexagonGrid.GetLength(1));
-    //        SpawnElectroStation();
-    //    }
-    //}
-    //private void SpawnSubElectroStation()
-    //{
-    //    foreach(var SubElectroStation in _subElectroStations)
-    //    {
-    //        _hexagonGrid = _cells.GetComponent<GridCell>()._hexagonGrid;
-    //        Back: int x = Random.Range(0, _hexagonGrid.GetLength(0));
-    //        int y = Random.Range(0, _hexagonGrid.GetLength(1));
-    //        if (_hexagonGrid[x,y].tag == "Zone")
-    //        {
-    //            //If the Zone has one electrostation or another one things. ZOne is busy.
-    //            if (_hexagonGrid[x, y].GetComponent<SixAngelSelection>().ReferenceOfObject != null)
-    //            {
-    //                goto Back;
-    //            }
-    //            GameObject NewBuild = Instantiate(SubElectroStation, new Vector3(_hexagonGrid[x, y].transform.position.x, .1f, _hexagonGrid[x, y].transform.position.z), Quaternion.identity);
-    //            if (_subElectroStationList.Count <= _subElectroStations.Count) _subElectroStationList.Add(NewBuild);
-    //            NewBuild.GetComponent<SubElectroStation>().indexX = _hexagonGrid[x, y].GetComponent<SixAngelSelection>().IndexX;
-    //            NewBuild.GetComponent<SubElectroStation>().indexY = _hexagonGrid[x, y].GetComponent<SixAngelSelection>().IndexY;
-    //            NewBuild.GetComponent<SubElectroStation>().ElectroStation = _electroStations[0];
-    //            _gameManager.Towers.Add(NewBuild.GetComponent<Transform>());
-    //            _hexagonGrid[x, y].GetComponent<SixAngelSelection>().ReferenceOfObject = NewBuild;
-    //        }
-    //        else
-    //        {
-    //            goto Back;
-    //        }
-    //    }
-    //}
     public void UpdateMoney()
     {
         _textOfMoney.text = "" + _money;
@@ -267,11 +217,16 @@ public class PlayerController : MonoBehaviour
                     _selectedObject.GetComponent<SixAngelSelection>().ReferenceOfObject = newBuild;
                     _money -= newBuild.GetComponent<UnitCost>().cost;
                     UpdateMoney();
+                    List<SixAngelSelection> VisionCell = new List<SixAngelSelection>();
+                    CellVisability CellVisability = new CellVisability();
+                    SixAngelSelection newCell = _selectedObject.GetComponent<SixAngelSelection>();
+                    CellVision newCellVision = new CellVision();
                     if (_builtMode == true)
                     {
 
                         switch (_gameManager.SelectedObject)
                         {
+                            
                             case "1":
                                 if (CheckSelectedObject(_airDefenses, _selectedObject)) return;
 
@@ -296,15 +251,20 @@ public class PlayerController : MonoBehaviour
                                 break;
                             case "2":
                                 if (CheckSelectedObject(_radars, _selectedObject)) return;
-
+                                
                                 _radars.Add(newBuild); _AllReservedCell.Add(newBuild);
+                                RadarDetection newRadarDetection = newBuild.GetComponent<RadarDetection>();
                                 if (_radars.Count > 0)
                                 {
                                     for (int i = 0; i < _radars.Count; i++)
                                     {
                                         _radars[i].GetComponent<RadarDetection>()._airDefenses = _airDefensesControler;
                                         if (_ecss.Count > 0) _radars[i].GetComponent<RadarDetection>().ECS = _ecss;
+                                        
                                     }
+                                    newCellVision = newBuild.GetComponent<CellVision>();
+                                    VisionCell = CellVisability.GetCellsInRange(newCell.IndexX, newCell.IndexY, newCellVision.Range, _cells.GetComponent<GridCell>()._hexagonGrid);
+                                    newCellVision.getMyCells(VisionCell); 
                                 }
                                 break;
                             case "3":
@@ -325,23 +285,18 @@ public class PlayerController : MonoBehaviour
                                     }
                                 }
                                 break;
-                            case "TestGepard": //Test list
-
-                                newBuild.GetComponent<VehicleCellMovement>().VehiclePosition.Item1 = _selectedObject.GetComponent<SixAngelSelection>().IndexX;
-                                newBuild.GetComponent<VehicleCellMovement>().VehiclePosition.Item2 = _selectedObject.GetComponent<SixAngelSelection>().IndexY;
-                                newBuild.GetComponent<VehicleCellMovement>().IndexX = _selectedObject.GetComponent<SixAngelSelection>().IndexX;
-                                newBuild.GetComponent<VehicleCellMovement>().IndexY = _selectedObject.GetComponent<SixAngelSelection>().IndexY;
-                                newBuild.GetComponent<VehicleCellMovement>().Spawn();
-                                _tmpCellSelectedObject = _selectedObject;
-                                _AllReservedCell.Add(newBuild);
-                                _mobileGroups.Add(newBuild);
-                                break;
+                            case "TestGepard":
                             case "TestMGroup":
-                                newBuild.GetComponent<VehicleCellMovement>().VehiclePosition.Item1 = _selectedObject.GetComponent<SixAngelSelection>().IndexX;
-                                newBuild.GetComponent<VehicleCellMovement>().VehiclePosition.Item2 = _selectedObject.GetComponent<SixAngelSelection>().IndexY;
-                                newBuild.GetComponent<VehicleCellMovement>().IndexX = _selectedObject.GetComponent<SixAngelSelection>().IndexX;
-                                newBuild.GetComponent<VehicleCellMovement>().IndexY = _selectedObject.GetComponent<SixAngelSelection>().IndexY;
-                                newBuild.GetComponent<VehicleCellMovement>().Spawn();
+                                
+                                VehicleCellMovement newVehicle = newBuild.GetComponent<VehicleCellMovement>();
+                                newCellVision = newBuild.GetComponent<CellVision>();
+                                newVehicle.VehiclePosition.Item1 = newCell.IndexX;
+                                newVehicle.VehiclePosition.Item2 = newCell.IndexY;
+                                newVehicle.IndexX = newCell.IndexX;
+                                newVehicle.IndexY = newCell.IndexY;
+                                newVehicle.Spawn();
+                                VisionCell = CellVisability.GetCellsInRange(newCell.IndexX,newCell.IndexY, newCellVision.Range, _cells.GetComponent<GridCell>()._hexagonGrid);
+                                newCellVision.getMyCells(VisionCell);
                                 _tmpCellSelectedObject = _selectedObject;
                                 _AllReservedCell.Add(newBuild);
                                 _mobileGroups.Add(newBuild);

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class SixAngelSelection : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class SixAngelSelection : MonoBehaviour
     public int IndexX;
     public int IndexY;
     public int Index;
+    public Transform TmpTrigger;
     
     private void Update()
     {
@@ -26,7 +28,22 @@ public class SixAngelSelection : MonoBehaviour
                 ActiveObject.SetActive(true);
                 UnactiveObject.SetActive(false);
             }
-            
+
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Missle")
+        {
+            TmpTrigger = other.GetComponent<Transform>();
+        }
+
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Missle")
+        {
+            TmpTrigger = null;
         }
     }
 }

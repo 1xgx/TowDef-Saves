@@ -7,9 +7,6 @@ using UnityEngine;
 
 public class MissleCellController : MonoBehaviour
 {
-    //[SerializeField] private Transform[] _allHexagons;
-    //[SerializeField] private Transform[,] _allHexagons2DArray;
-    //private List<Transform> _path;
     [SerializeField] private float _speed = 1f;
     [SerializeField] private Transform _target;
 

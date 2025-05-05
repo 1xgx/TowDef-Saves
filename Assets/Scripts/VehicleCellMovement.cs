@@ -35,7 +35,7 @@ public class VehicleCellMovement : MonoBehaviour
     [SerializeField] private GameObject _refBullet;
     [SerializeField] private bool _flagFirst = true;
     [SerializeField] private bool _flagSecond = false;
-    [SerializeField] private Transform _target;
+    public Transform Target;
     private BoxCollider _boxCollider;
     private (float, float, float) _boxColliderSize;
     public void Spawn()
@@ -138,11 +138,9 @@ public class VehicleCellMovement : MonoBehaviour
     private void Shooting()
     {
         
-        if (_target != null)
+        if (Target != null)
         {
-
-            //_target = GameObject.FindWithTag("Missle").transform;
-            _objectRotate.LookAt(_target.transform, Vector3.down);
+            _objectRotate.LookAt(Target.transform, Vector3.down);
             _objectRotate.Rotate(0, 180, 0);
             if (_flagFirst && !_flagSecond) MissleSpawner();
         }
@@ -165,7 +163,7 @@ public class VehicleCellMovement : MonoBehaviour
     private IEnumerator QueueOfBullets()
     {
         GameObject newBullet = Instantiate(_refBullet, new Vector3(transform.position.x, 0, transform.position.z), Quaternion.identity);
-        if (_target.IsDestroyed())
+        if (Target.IsDestroyed())
         {
             _flagSecond = false;
             yield break;
@@ -175,8 +173,8 @@ public class VehicleCellMovement : MonoBehaviour
             _flagSecond = false;
             yield break;
         }
-        Debug.Log(_target.name);
-        newBullet.GetComponent<MIssleOfAirDefenseController>().Target = _target;
+        Debug.Log(Target.name);
+        newBullet.GetComponent<MIssleOfAirDefenseController>().Target = Target;
         _bullets--;
         yield return new WaitForSeconds(_delayBetweenFire);
         MissleSpawner();
@@ -201,12 +199,12 @@ public class VehicleCellMovement : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Missle") 
-        {
-            _target = other.GetComponent<Transform>();
+        //if (other.tag == "Missle") 
+        //{
+        //    _target = other.GetComponent<Transform>();
 
-            Debug.Log($"target {_target}");
-        }
+        //    Debug.Log($"target {_target}");
+        //}
         if (other.tag == "Zone" || other.tag == "WaterZone")
         {
             if (other.GetComponent<SixAngelSelection>() && other.GetComponent<SixAngelSelection>() != null && other.GetComponent<SixAngelSelection>().IndexX == _cell[_vehicleWay[_steps].Item1, _vehicleWay[_steps].Item2].GetComponent<SixAngelSelection>().IndexX &&

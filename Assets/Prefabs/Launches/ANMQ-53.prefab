@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 6126648791080149362}
   - component: {fileID: -7106678858634993492}
   - component: {fileID: 3027448947102743369}
+  - component: {fileID: -8274645493422520024}
   m_Layer: 0
   m_Name: ANMQ-53
   m_TagString: Untagged
@@ -179,7 +180,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.64, y: 0.43, z: 2.76}
+  m_Size: {x: 0.76, y: 0.43, z: 1.19}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6126648791080149362
 MonoBehaviour:
@@ -224,6 +225,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointLight: {fileID: 723592927837380905}
+--- !u!114 &-8274645493422520024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5513951649785449163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9012a0c105172774d87fc9749f9941a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Range: 2
+  VisionCells: []
 --- !u!1 &8945572800336890554
 GameObject:
   m_ObjectHideFlags: 0

@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 2491500687904810521}
   - component: {fileID: 3053465752403270583}
   - component: {fileID: -4051890638394192936}
+  - component: {fileID: 7257072303664639088}
   m_Layer: 0
   m_Name: MGroupLvl1
   m_TagString: Military_Object
@@ -239,6 +240,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointLight: {fileID: 1936620802697245939}
+--- !u!114 &7257072303664639088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4071253049366143338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9012a0c105172774d87fc9749f9941a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VisionCells: []
 --- !u!1001 &4917173300796546637
 PrefabInstance:
   m_ObjectHideFlags: 0

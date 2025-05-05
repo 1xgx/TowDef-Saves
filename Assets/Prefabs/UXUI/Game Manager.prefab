@@ -47,8 +47,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _UI: {fileID: 0}
-  _towerButton: {fileID: 0}
-  _startButton: {fileID: 0}
   _missleSpawner: {fileID: 0}
   _playerContorler: {fileID: 0}
   _allMissles: []
@@ -63,7 +61,7 @@ MonoBehaviour:
   _currentWave: 1
   _timer: {fileID: 0}
   LevelPanel: {fileID: 0}
-  _soundEffectsSc: {fileID: 0}
+  _soundEffectsSc: {fileID: 6986887460689780021}
   _audioClip: {fileID: 8300000, guid: c945dac2af9f66c4dbf844e74a92d8e3, type: 3}
   _audioSource: {fileID: 0}
   _delayOfClick: 0.5
