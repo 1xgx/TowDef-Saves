@@ -9,7 +9,7 @@ public class CellVision : MonoBehaviour
     public void getMyCells(List<SixAngelSelection> myCells)
     {
         VisionCells = myCells;
-        //toShowArtem();
+        toShowArtem();
     }
     private void FixedUpdate()
     {
