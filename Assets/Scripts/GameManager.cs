@@ -56,7 +56,6 @@ public class GameManager : MonoBehaviour
     public void startGame()
     {
         isGameActive = true;
-        //_startButton.SetActive(true);
         
     }
     public void startPlayerGame()

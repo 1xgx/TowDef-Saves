@@ -9,11 +9,6 @@ public class CellVision : MonoBehaviour
     public void getMyCells(List<SixAngelSelection> myCells)
     {
         VisionCells = myCells;
-        toShowArtem();
-    }
-    private void FixedUpdate()
-    {
-        
     }
     private void Update()
     {
@@ -43,16 +38,7 @@ public class CellVision : MonoBehaviour
                     Debug.Log("hsdbfhjsdbhjfbshjdbfhjsdbhjbfhs");
                     newRadar.ECSIsPosed = true;
                 }
-                else return;
             }
-        }
-    }
-    private void toShowArtem()
-    {
-        for (int i = 0; i < VisionCells.Count; i++)
-        {
-            Transform newTransform = VisionCells[i].transform;
-            newTransform.position = new Vector3(newTransform.position.x, 1.0f, newTransform.position.z);
         }
     }
 }
