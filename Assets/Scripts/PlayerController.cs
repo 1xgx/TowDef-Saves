@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
     private int indexX, indexY;
 
     [SerializeField] private GameObject _battleMenu; //Test Variant
-    [SerializeField] private GameObject _subButttleMenu; //Test Variant
+    //[SerializeField] private GameObject _subButttleMenu; //Test Variant
     
     private void Awake()
     {
@@ -356,7 +356,7 @@ public class PlayerController : MonoBehaviour
                     _tmpSelectedObject = null;
                     _builtMode = true;
                     _selectMode = false;
-                    _subButttleMenu.active = false;
+                    //_subButttleMenu.active = false;
                     _battleMenu.SetActive(true);
                     
                     Destroy(_geoPointRef);

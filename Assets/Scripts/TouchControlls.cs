@@ -161,6 +161,45 @@ public partial class @TouchControlls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Action"",
+            ""id"": ""462422f0-7b72-4e96-b10c-37620a115ae4"",
+            ""actions"": [
+                {
+                    ""name"": ""Hold"",
+                    ""type"": ""Button"",
+                    ""id"": ""32fdbc95-9b9d-46bb-b366-f55ef59e82f6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""1446ed39-646b-4767-8246-a6b283638d35"",
+                    ""path"": ""<Touchscreen>/Press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e66de22f-19c9-4d05-b21d-62e3e0b994c4"",
+                    ""path"": ""<Mouse>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -173,6 +212,9 @@ public partial class @TouchControlls: IInputActionCollection2, IDisposable
         m_Touch_PrimaryFingerPositon = m_Touch.FindAction("PrimaryFingerPositon", throwIfNotFound: true);
         m_Touch_SecondaryFingerPosition = m_Touch.FindAction("SecondaryFingerPosition", throwIfNotFound: true);
         m_Touch_SecondaryTouchContact = m_Touch.FindAction("SecondaryTouchContact", throwIfNotFound: true);
+        // Action
+        m_Action = asset.FindActionMap("Action", throwIfNotFound: true);
+        m_Action_Hold = m_Action.FindAction("Hold", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -316,6 +358,52 @@ public partial class @TouchControlls: IInputActionCollection2, IDisposable
         }
     }
     public TouchActions @Touch => new TouchActions(this);
+
+    // Action
+    private readonly InputActionMap m_Action;
+    private List<IActionActions> m_ActionActionsCallbackInterfaces = new List<IActionActions>();
+    private readonly InputAction m_Action_Hold;
+    public struct ActionActions
+    {
+        private @TouchControlls m_Wrapper;
+        public ActionActions(@TouchControlls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Hold => m_Wrapper.m_Action_Hold;
+        public InputActionMap Get() { return m_Wrapper.m_Action; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ActionActions set) { return set.Get(); }
+        public void AddCallbacks(IActionActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ActionActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ActionActionsCallbackInterfaces.Add(instance);
+            @Hold.started += instance.OnHold;
+            @Hold.performed += instance.OnHold;
+            @Hold.canceled += instance.OnHold;
+        }
+
+        private void UnregisterCallbacks(IActionActions instance)
+        {
+            @Hold.started -= instance.OnHold;
+            @Hold.performed -= instance.OnHold;
+            @Hold.canceled -= instance.OnHold;
+        }
+
+        public void RemoveCallbacks(IActionActions instance)
+        {
+            if (m_Wrapper.m_ActionActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IActionActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ActionActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ActionActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public ActionActions @Action => new ActionActions(this);
     public interface ITouchActions
     {
         void OnTouchInput(InputAction.CallbackContext context);
@@ -324,5 +412,9 @@ public partial class @TouchControlls: IInputActionCollection2, IDisposable
         void OnPrimaryFingerPositon(InputAction.CallbackContext context);
         void OnSecondaryFingerPosition(InputAction.CallbackContext context);
         void OnSecondaryTouchContact(InputAction.CallbackContext context);
+    }
+    public interface IActionActions
+    {
+        void OnHold(InputAction.CallbackContext context);
     }
 }

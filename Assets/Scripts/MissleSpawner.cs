@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class MissleSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] _misslePrefab;
-    [SerializeField] private float _delay = 10.0f;
+    public float _delay = 2.0f;
     [SerializeField] private GridCell _gridCell;
     public List<string> _missleType;
     [SerializeField] private GameManager _gameManager;
