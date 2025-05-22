@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1445958954246238999}
   - component: {fileID: -3236230674898949485}
   - component: {fileID: 547647396776322375}
+  - component: {fileID: 7235534773170318568}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -102,7 +103,6 @@ MonoBehaviour:
   _cameraSpeed: 9
   _choosedObject: {fileID: 0}
   _battleMenu: {fileID: 0}
-  _subButttleMenu: {fileID: 0}
 --- !u!114 &1445958954246238999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,3 +246,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7235534773170318568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4283372475919404793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f04b2f8e5e8fb094fbff7a201a64f555, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _holdThreshold: 5
+  _delay: 5
+  _slider: {fileID: 0}
+  _player: {fileID: 0}
